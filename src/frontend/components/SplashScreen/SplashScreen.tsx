@@ -1,5 +1,14 @@
+/**
+ * @file SplashScreen.tsx
+ * @author Huy Le (huyisme-005)
+ * @brief This is the code for the splash screen.
+ */
 import React, { useState } from 'react';
 
+/**
+ * This is the SplashScreen variable to represent the landing page.
+ * @returns the splash screen
+ */
 const SplashScreen: React.FC = () => {
   const [imgError, setImgError] = useState(false);
 
@@ -23,4 +32,4 @@ const SplashScreen: React.FC = () => {
   );
 };
 
-export default SplashScreen; 
+export default SplashScreen; //export it to make sure it gets displayed
