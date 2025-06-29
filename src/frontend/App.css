@@ -47,13 +47,25 @@
   text-align: center;
 }
 
-/* Make the Log In button 50% smaller */
-.centered-form button[type="submit"] {
-  font-size: 1.2rem;
-  padding: 1rem 0;
-  width: 50%;
-  max-width: 7.5rem;
+/* Unify the style for both Sign Up and Log In buttons */
+.centered-form button[type="submit"],
+.centered-form button.create-account {
+  font-size: 1.3rem;
+  padding: 0.5rem 0;
+  width: 16rem;
+  max-width: 100%;
   margin: 0 auto;
+  border: 2px solid #111;
+  background: #fff;
+  color: #111;
+  border-radius: 0;
+  box-shadow: none;
+  font-weight: 400;
+  transition: background 0.2s;
+}
+.centered-form button[type="submit"]:hover,
+.centered-form button.create-account:hover {
+  background: #f3f3f3;
 }
 
 @media (max-width: 600px) {
@@ -70,10 +82,11 @@
     width: 95vw;
     max-width: 18rem;
   }
-  .centered-form button[type="submit"] {
-    font-size: 0.9rem;
-    padding: 0.7rem 0;
-    width: 45%;
-    max-width: 5.5rem;
+  .centered-form button[type="submit"],
+  .centered-form button.create-account {
+    font-size: 1rem;
+    padding: 0.5rem 0;
+    width: 90vw;
+    max-width: 16rem;
   }
 } 
