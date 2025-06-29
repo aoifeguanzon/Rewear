@@ -13,7 +13,7 @@ const SplashScreen: React.FC = () => {
   const [imgError, setImgError] = useState(false);
 
   return (
-    <div className="flex flex-col items-center justify-center w-full min-h-screen bg-white">
+    <div className="flex flex-col items-center justify-center w-full min-h-screen bg-white relative">
       {!imgError ? (
         <img
           src="assets/logo.jpg"
@@ -26,27 +26,7 @@ const SplashScreen: React.FC = () => {
           Logo not found
         </div>
       )}
-      {/* Centered Buttons Section */}
-      <div className="flex justify-center w-full mt-8">
-        <div className="flex flex-row gap-4">
-          <button
-            className="px-16 py-3 bg-green-600 text-white rounded-md font-semibold text-lg shadow hover:bg-green-700 transition-colors w-64"
-            onClick={() => {
-              /* handle new user click */
-            }}
-          >
-            New User
-          </button>
-          <button
-            className="px-16 py-3 bg-white text-green-700 border border-green-600 rounded-md font-semibold text-lg shadow hover:bg-green-50 transition-colors w-64"
-            onClick={() => {
-              /* handle returning user click */
-            }}
-          >
-            Returning User
-          </button>
-        </div>
-      </div>
+      
     </div>
   );
 };
