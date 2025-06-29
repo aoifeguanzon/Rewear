@@ -4,6 +4,7 @@
  * @brief This is the code for the splash screen.
  */
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../../App.css';
 
 /**
@@ -12,6 +13,7 @@ import '../../App.css';
  */
 const SplashScreen: React.FC = () => {
   const [imgError, setImgError] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <div className="flex flex-col items-center justify-center w-full min-h-screen bg-white">
@@ -31,9 +33,9 @@ const SplashScreen: React.FC = () => {
       <div className="centered-buttons">
         <button
           className="w-full px-4 py-2 border border-gray-700 rounded bg-white text-black font-medium hover:bg-gray-100 transition-colors"
-          onClick={() => { /* handle new user click */ }}
+          onClick={() => navigate('/signup')}
         >
-          New User
+          New user
         </button>
         <button
           className="w-full px-4 py-2 border border-gray-700 rounded bg-white text-black font-medium hover:bg-gray-100 transition-colors"
