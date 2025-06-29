@@ -4,7 +4,7 @@ const SplashScreen: React.FC = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-white animate-fade-in">
       <img
-        src="/icon.jpg"
+        src="/logo.jpg"
         alt="Icon"
         className="w-40 h-40 mb-8 drop-shadow-lg animate-bounce-gentle"
         style={{ borderRadius: '2rem' }}
