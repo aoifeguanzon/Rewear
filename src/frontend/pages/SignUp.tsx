@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../App.css';
 
 const SignUp: React.FC = () => {
   const [username, setUsername] = useState('');
@@ -6,13 +7,13 @@ const SignUp: React.FC = () => {
   const [password, setPassword] = useState('');
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-white px-4">
+    <div className="centered-page px-4">
       <h1 className="text-6xl font-light mb-4">Sign up</h1>
-      <div className="text-center text-lg mb-8">
+      <div className="subtitle text-lg mb-8">
         <div>Where style meets sustainability.</div>
         <div>Join the movement.</div>
       </div>
-      <form className="flex flex-col gap-4 w-full max-w-xs">
+      <form className="centered-form" style={{marginTop: 0}}>
         <input
           type="text"
           placeholder="Username"
@@ -41,7 +42,7 @@ const SignUp: React.FC = () => {
           Create account
         </button>
       </form>
-      <div className="mt-4 text-lg">
+      <div className="login-link mt-4 text-lg">
         Already with us?{' '}
         <a href="#" className="font-bold underline hover:no-underline">Log in</a>
       </div>

@@ -18,4 +18,29 @@
   font-size: 1.5rem; /* 2x larger than 1rem */
   padding: 1rem 2rem; /* 2x larger than before */
   width: 24rem; /* 2x larger than 12rem (192px) */
+}
+
+.centered-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: white;
+}
+
+.centered-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  max-width: 22rem;
+  margin: 0 auto;
+}
+
+.centered-page h1,
+.centered-page .subtitle,
+.centered-page form,
+.centered-page .login-link {
+  text-align: center;
 } 
