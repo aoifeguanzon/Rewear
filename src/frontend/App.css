@@ -15,9 +15,10 @@
 }
 
 .centered-buttons button {
-  font-size: 1.5rem; /* 2x larger than 1rem */
-  padding: 1rem 2rem; /* 2x larger than before */
-  width: 24rem; /* 2x larger than 12rem (192px) */
+  font-size: 1.2rem;
+  padding: 0.75rem 1.5rem;
+  width: 90vw;
+  max-width: 20rem;
 }
 
 .centered-page {
@@ -27,6 +28,7 @@
   align-items: center;
   justify-content: center;
   background: white;
+  padding: 1rem;
 }
 
 .centered-form {
@@ -43,4 +45,20 @@
 .centered-page form,
 .centered-page .login-link {
   text-align: center;
+}
+
+@media (max-width: 600px) {
+  .centered-page h1 {
+    font-size: 2.5rem;
+  }
+  .centered-form,
+  .centered-buttons {
+    max-width: 95vw;
+  }
+  .centered-buttons button {
+    font-size: 1rem;
+    padding: 0.75rem 1rem;
+    width: 95vw;
+    max-width: 18rem;
+  }
 } 
