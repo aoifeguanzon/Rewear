@@ -39,7 +39,7 @@ const SplashScreen: React.FC = () => {
         </button>
         <button
           className="w-full px-4 py-2 border border-gray-700 rounded bg-white text-black font-medium hover:bg-gray-100 transition-colors"
-          onClick={() => { /* handle existing user click */ }}
+          onClick={() => navigate('/login')}
         >
           Returning User
         </button>

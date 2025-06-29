@@ -8,12 +8,14 @@ import React from 'react';//React plays a significant role in frontend developme
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import SplashScreen from './components/SplashScreen/SplashScreen';
 import SignUp from './pages/SignUp';
+import Login from './pages/Login';
 
 const App: React.FC = () => (
   <Router>
     <Routes>
       <Route path="/" element={<SplashScreen />} />
       <Route path="/signup" element={<SignUp />} />
+      <Route path="/login" element={<Login />} />
     </Routes>
   </Router>
 );
