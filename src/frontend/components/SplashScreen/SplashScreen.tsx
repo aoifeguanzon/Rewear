@@ -13,20 +13,34 @@ const SplashScreen: React.FC = () => {
   const [imgError, setImgError] = useState(false);
 
   return (
-    <div className="flex flex-col items-center justify-center w-full min-h-screen bg-white relative">
+    <div className="flex flex-col items-center justify-center w-full min-h-screen bg-white">
       {!imgError ? (
         <img
           src="assets/logo.jpg"
           alt="Logo"
-          style={{ width: '1400px', height: '500px', borderRadius: '0.05rem', objectFit: 'contain' }}
+          style={{ width: '1400px', height: '300px', borderRadius: '0.05rem', objectFit: 'contain' }}
           onError={() => setImgError(true)}
         />
       ) : (
-        <div style={{ width: '1400px', height: '500px' }} className="flex items-center justify-center bg-gray-100 rounded text-gray-100 text-xl">
+        <div style={{ width: '1400px', height: '300px' }} className="flex items-center justify-center bg-gray-100 rounded text-gray-100 text-xl">
           Logo not found
         </div>
       )}
-      
+      {/* Vertically Centered Buttons Section */}
+      <div className="flex flex-col items-center gap-4 mt-8 w-full max-w-xs">
+        <button
+          className="w-full px-4 py-2 border border-gray-700 rounded bg-white text-black font-medium hover:bg-gray-100 transition-colors"
+          onClick={() => { /* handle new user click */ }}
+        >
+          New user
+        </button>
+        <button
+          className="w-full px-4 py-2 border border-gray-700 rounded bg-white text-black font-medium hover:bg-gray-100 transition-colors"
+          onClick={() => { /* handle existing user click */ }}
+        >
+          Existing user
+        </button>
+      </div>
     </div>
   );
 };
