@@ -18,11 +18,11 @@ const SplashScreen: React.FC = () => {
         <img
           src="assets/logo.jpg"
           alt="Logo"
-          style={{ width: '1400px', height: '300px', borderRadius: '0.05rem', objectFit: 'contain' }}
+          style={{ width: '1400px', height: '500px', borderRadius: '0.05rem', objectFit: 'contain' }}
           onError={() => setImgError(true)}
         />
       ) : (
-        <div style={{ width: '1400px', height: '300px' }} className="flex items-center justify-center bg-gray-100 rounded text-gray-100 text-xl">
+        <div style={{ width: '1400px', height: '500px' }} className="flex items-center justify-center bg-gray-100 rounded text-gray-100 text-xl">
           Logo not found
         </div>
       )}
