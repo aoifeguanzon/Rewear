@@ -1,0 +1,15 @@
+/* App.css - global styles for the frontend */
+
+.centered-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 2rem;
+  gap: 1rem;
+  width: 100%;
+  max-width: 20rem;
+} 

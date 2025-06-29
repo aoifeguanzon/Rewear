@@ -4,6 +4,7 @@
  * @brief This is the code for the splash screen.
  */
 import React, { useState } from 'react';
+import '../../App.css';
 
 /**
  * This is the SplashScreen variable to represent the landing page.
@@ -27,7 +28,7 @@ const SplashScreen: React.FC = () => {
         </div>
       )}
       {/* Vertically Centered Buttons Section */}
-      <div className="flex flex-col items-center gap-4 mt-8 w-full max-w-xs">
+      <div className="centered-buttons">
         <button
           className="w-full px-4 py-2 border border-gray-700 rounded bg-white text-black font-medium hover:bg-gray-100 transition-colors"
           onClick={() => { /* handle new user click */ }}
