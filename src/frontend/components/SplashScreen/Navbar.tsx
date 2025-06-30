@@ -1,4 +1,11 @@
+/**
+ * @file Navbar.tsx
+ * @author Isaac Mulugeta
+ * @brief This is the Navbar component for the ReWear application.
+ * @details The Navbar component provides navigation links for the application.
+ */
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
@@ -8,10 +15,10 @@ const Navbar = () => {
         LOGO
       </div>
       <ul className="flex space-x-6 text-black font-medium">
-        <li><a href="/">Home</a></li>
-        <li><a href="/Profile">Profile</a></li>
-        <li><a href="/Social">Social</a></li>
-        <li><a href="/Settings">Settings</a></li>
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="/profile">Profile</Link></li>
+        <li><Link to="/social">Social</Link></li>
+        <li><Link to="/settings">Settings</Link></li>
       </ul>
     </nav>
   );
