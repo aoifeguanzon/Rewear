@@ -2,8 +2,82 @@
 
 # Organization: ReWear
 
+## Table of Contents
+- [Overview](#overview)
+- [Step 1: Create AWS Account and IAM User](#step-1-create-aws-account-and-iam-user)
+- [Step 2: Create DynamoDB Table](#step-2-create-dynamodb-table)
+- [Step 3: Configure Environment Variables](#step-3-configure-environment-variables)
+- [Access Levels](#access-levels)
+- [Setup Steps](#setup-steps)
+- [API Endpoints](#api-endpoints)
+- [Security Features](#security-features)
+- [Monitoring](#monitoring)
+- [Troubleshooting](#troubleshooting)
+- [Best Practices](#best-practices)
+- [Production Considerations](#production-considerations)
+
 ## Overview
 This guide explains how to set up secure access to the DynamoDB table for multiple users with different permission levels.
+
+---
+
+## Step 1: Create AWS Account and IAM User
+
+### 1.1 Create AWS Account
+- [AWS Console](https://aws.amazon.com/)
+- Register and log in.
+
+### 1.2 Create IAM User for DynamoDB Access
+- [IAM Console](https://console.aws.amazon.com/iam/)
+- Go to "Users" > "Add users"
+- User name: `rewear-dynamodb-user`
+- Access type: Programmatic access
+- Attach policy: `AmazonDynamoDBFullAccess` (for development) or a [custom policy](#custom-policy-example) for production
+- Save the Access Key ID and Secret Access Key securely (preferrably store it in your local directory and then add it to .gitignore)
+
+---
+
+## Step 2: Create DynamoDB Table
+
+### 2.1 Go to DynamoDB Console
+- [DynamoDB Console](https://console.aws.amazon.com/dynamodb/)
+- Click "Create table"
+
+### 2.2 Table Settings
+- Table name: `Users`
+- Partition key: `userId` (String)
+- Sort key: (leave empty)
+- Capacity mode: On-demand (recommended)
+- Point-in-time recovery: Enabled (optional)
+- Click "Create table"
+
+### 2.3 Verify Table
+- [DynamoDB Tables](https://console.aws.amazon.com/dynamodb/home#tables)
+- Ensure `Users` table appears in the list
+
+---
+
+## Step 3: Configure Environment Variables
+
+Create a `.env` file in `src/backend/`:
+
+```env
+AWS_REGION=us-east-1
+AWS_ACCESS_KEY_ID=your-access-key-id
+AWS_SECRET_ACCESS_KEY=your-secret-access-key
+DYNAMODB_TABLE_NAME=Users
+JWT_SECRET=your-super-secret-jwt-key
+EMAIL_HOST=smtp.gmail.com
+EMAIL_PORT=587
+EMAIL_USER=your-email@gmail.com
+EMAIL_PASS=your-app-password
+EMAIL_FROM=noreply@rewear.com
+FRONTEND_URL=http://localhost:5173
+```
+
+Replace the placeholders with your actual values.
+
+---
 
 ## Access Levels
 
