@@ -13,6 +13,7 @@ const { createTable } = require('./config/database');
 
 // Import routes
 const authRoutes = require('./routes/auth');
+const adminRoutes = require('./routes/admin');
 
 /**
  * Express application instance.
@@ -56,6 +57,7 @@ app.get('/health', (req, res) => {
 
 // API routes
 app.use('/api/auth', authRoutes);
+app.use('/api/admin', adminRoutes);
 
 // 404 handler
 app.use('*', (req, res) => {

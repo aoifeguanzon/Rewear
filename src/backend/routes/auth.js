@@ -23,6 +23,7 @@ const {
 } = require('../config/database');
 const { sendVerificationEmail, sendPasswordResetEmail } = require('../config/email');
 const { authenticateToken } = require('../middleware/auth');
+const { validateAccess, canCreate, canRead, canUpdate, logAccess } = require('../middleware/accessControl');
 
 /**
  * Express router for authentication routes.
@@ -37,6 +38,9 @@ const router = express.Router();
  * @access Public
  */
 router.post('/signup', [
+  validateAccess,
+  canCreate,
+  logAccess,
   body('username').trim().isLength({ min: 3 }).withMessage('Username must be at least 3 characters'),
   body('email').isEmail().normalizeEmail().withMessage('Please provide a valid email'),
   body('password').isLength({ min: 8 }).withMessage('Password must be at least 8 characters')
