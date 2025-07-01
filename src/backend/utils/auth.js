@@ -72,13 +72,33 @@ const generateSecureToken = () => {
 };
 
 /**
- * Generates a user ID from email (or UUID).
- * @param {string} email - The user's email.
- * @returns {string} The user ID.
+ * Generates a user ID using UUID with email-based seed for consistency.
+ * @param {string} email - The user's email (used for seeding UUID generation).
+ * @returns {string} The user ID (UUID).
  */
 const generateUserId = (email) => {
-  // Using email as userId for simplicity, but you could use UUID
-  return email.toLowerCase().trim();
+  // Create a deterministic UUID based on email hash for consistency
+  // This ensures the same email always generates the same UUID
+  const emailHash = crypto.createHash('sha256').update(email.toLowerCase().trim()).digest('hex');
+  
+  // Use the email hash to seed a deterministic UUID v5-like generation
+  // This provides UUID benefits while maintaining email-based consistency
+  const namespace = '6ba7b810-9dad-11d1-80b4-00c04fd430c8'; // RFC 4122 namespace
+  const name = emailHash;
+  
+  // Generate a deterministic UUID-like string based on email
+  const hash = crypto.createHash('sha1').update(namespace + name).digest();
+  
+  // Convert to UUID format: xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx
+  const uuid = [
+    hash.subarray(0, 4).toString('hex'),
+    hash.subarray(4, 6).toString('hex'),
+    (hash[6] & 0x0f | 0x40).toString(16) + hash.subarray(7, 8).toString('hex'),
+    (hash[8] & 0x3f | 0x80).toString(16) + hash.subarray(9, 10).toString('hex'),
+    hash.subarray(10, 16).toString('hex')
+  ].join('-');
+  
+  return uuid;
 };
 
 /**
