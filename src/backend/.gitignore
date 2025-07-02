@@ -1,0 +1,23 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*.so
+
+# Virtual environment
+venv/
+
+# Environment variables
+.env
+
+# macOS system files
+.DS_Store
+
+# Logs and temp files
+*.log
+*.sqlite3
+
+# IDE/project files
+.vscode/
+.idea/
+*.swp
+
