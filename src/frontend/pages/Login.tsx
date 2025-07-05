@@ -1,3 +1,8 @@
+/**
+ * @file Login.tsx
+ * @author Huy Le (huyisme-005)
+ * @brief Login page
+ */
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../App.css';

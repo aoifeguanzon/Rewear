@@ -1,3 +1,8 @@
+/**
+ * @file SignUp.tsx
+ * @author Huy Le (huyisme-005)
+ * @brief Sign up page
+ */
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../App.css';
