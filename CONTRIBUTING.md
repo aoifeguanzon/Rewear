@@ -1,4 +1,4 @@
-# Feature Development Checklist
+#  Feature Development Checklist
 Before merging your branch:
 
 ## Add file-level comments:
@@ -14,7 +14,7 @@ Before merging your branch:
 ## Add comments for:
 - [ ] Global and local variables
 - [ ] Important code blocks (e.g. loops, conditionals)
-- [ ] Debugging tips if there’s tricky logic.
+- [ ] Debugging tips if there’s tricky logic
 
 ## When you're done:
-Create a pull request for your changes.
+Create a pull request for your changes
