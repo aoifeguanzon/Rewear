@@ -4,9 +4,11 @@
 
 ## Table of Contents
 - [Overview](#overview)
+- [Free Tier Setup](#free-tier-setup)
 - [Step 1: Create AWS Account and IAM User](#step-1-create-aws-account-and-iam-user)
 - [Step 2: Create DynamoDB Table](#step-2-create-dynamodb-table)
 - [Step 3: Configure Environment Variables](#step-3-configure-environment-variables)
+- [Step 4: Team Member Setup](#step-4-team-member-setup)
 - [Access Levels](#access-levels)
 - [Setup Steps](#setup-steps)
 - [API Endpoints](#api-endpoints)
@@ -17,7 +19,20 @@
 - [Production Considerations](#production-considerations)
 
 ## Overview
-This guide explains how to set up secure access to the DynamoDB table for multiple users with different permission levels.
+This guide explains how to set up secure access to the DynamoDB table for multiple users with different permission levels using AWS Free Tier.
+
+## Free Tier Setup
+
+### AWS Free Tier Benefits for ReWear
+- **DynamoDB**: 25 GB storage, 25 WCU/RCU per month
+- **IAM**: Free for basic usage
+- **CloudWatch**: Basic monitoring included
+- **Estimated Monthly Cost**: $0 (within free tier limits)
+
+### Free Tier Monitoring
+- Set up billing alerts at $1 to avoid unexpected charges
+- Monitor usage in AWS Cost Explorer
+- Use CloudWatch to track DynamoDB metrics
 
 ---
 
@@ -26,6 +41,7 @@ This guide explains how to set up secure access to the DynamoDB table for multip
 ### 1.1 Create AWS Account
 - [AWS Console](https://aws.amazon.com/)
 - Register and log in.
+- **Important**: Use a shared team email or create a dedicated AWS account for the project
 
 ### 1.2 Create IAM User for DynamoDB Access
 - [IAM Console](https://console.aws.amazon.com/iam/)
@@ -34,6 +50,12 @@ This guide explains how to set up secure access to the DynamoDB table for multip
 - Access type: Programmatic access
 - Attach policy: `AmazonDynamoDBFullAccess` (for development) or a [custom policy](#custom-policy-example) for production
 - Save the Access Key ID and Secret Access Key securely (preferrably store it in your local directory and then add it to .gitignore)
+
+### 1.3 Create Team IAM Users
+For each team member, create a separate IAM user:
+- User name: `rewear-team-member-{name}`
+- Access type: Programmatic access
+- Attach custom policy for limited DynamoDB access
 
 ---
 
@@ -47,7 +69,7 @@ This guide explains how to set up secure access to the DynamoDB table for multip
 - Table name: `Users`
 - Partition key: `userId` (String)
 - Sort key: (leave empty)
-- Capacity mode: On-demand (recommended)
+- **Capacity mode**: On-demand (recommended for free tier)
 - Point-in-time recovery: Enabled (optional)
 - Click "Create table"
 
@@ -78,6 +100,47 @@ FRONTEND_URL=http://localhost:5173
 Replace the placeholders with your actual values.
 
 ---
+
+## Step 4: Team Member Setup
+
+### 4.1 Share AWS Credentials Securely
+- Use a password manager (1Password, LastPass, etc.)
+- Share credentials via secure channels
+- Never commit credentials to version control
+
+### 4.2 Team Member Environment Setup
+Each team member should create their own `.env` file:
+
+```env
+# .env file for team member
+AWS_REGION=us-east-1
+AWS_ACCESS_KEY_ID=their-access-key
+AWS_SECRET_ACCESS_KEY=their-secret-key
+DYNAMODB_TABLE_NAME=Users
+JWT_SECRET=shared-jwt-secret
+EMAIL_HOST=smtp.gmail.com
+EMAIL_PORT=587
+EMAIL_USER=team-email@gmail.com
+EMAIL_PASS=team-app-password
+EMAIL_FROM=noreply@rewear.com
+FRONTEND_URL=http://localhost:5173
+```
+
+### 4.3 Add Team Members to Access Control
+Use the admin API to add team members:
+
+```bash
+# Add a new team member
+curl -X POST http://localhost:5000/api/admin/users \
+  -H "Content-Type: application/json" \
+  -H "x-access-key-id: YOUR_ADMIN_ACCESS_KEY" \
+  -d '{
+    "accessKeyId": "AKIA...",
+    "name": "Team Member Name",
+    "email": "member@company.com",
+    "accessLevel": "developer"
+  }'
+```
 
 ## Access Levels
 
