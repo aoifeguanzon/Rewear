@@ -1,3 +1,7 @@
+ * @file main.py
+ * @author Valerie Pena
+ * @brief FastAPI backend for user signup & login system using DynamoDB and bcrypt.
+
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from models import UserModel
@@ -61,4 +65,8 @@ async def login(data: LoginRequest):
                 raise HTTPException(status_code=400, detail="Incorrect password.")
         else:
             raise HTTPException(status_code=400, detail="User not found.")
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
 
