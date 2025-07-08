@@ -1,6 +1,8 @@
+"""
  * @file main.py
  * @author Valerie Pena
  * @brief FastAPI backend for user signup & login system using DynamoDB and bcrypt.
+"""
 
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel

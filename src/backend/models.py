@@ -1,3 +1,9 @@
+"""
+@file models.py
+@author Valerie Pena
+@brief Defines the UserModel for storing user accounts in DynamoDB using PynamoDB.
+"""
+
 from pynamodb.models import Model
 from pynamodb.attributes import UnicodeAttribute
 
