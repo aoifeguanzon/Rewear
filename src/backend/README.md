@@ -40,6 +40,30 @@ npm run dev
 
 Create a `.env` file in the `src/backend/` directory:
 
+### Generating a Secure JWT Secret Key
+
+You must set a strong, random JWT secret for token signing. To generate a secure key, run one of the following commands in your terminal:
+
+```bash
+# Using Node.js (recommended)
+node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"
+
+# Or using OpenSSL
+openssl rand -hex 64
+```
+
+Copy the output and use it as your `JWT_SECRET` value in the `.env` file:
+
+```env
+JWT_SECRET=your-generated-super-secret-key
+```
+
+> ⚠️ **Caution:**
+> - Never share your JWT secret or commit it to version control.
+> - Use a different secret for development and production.
+> - If the secret is ever leaked, change it immediately (all existing tokens will become invalid).
+> - Rotate your JWT secret periodically as a security best practice.
+
 ```env
 # AWS Configuration
 AWS_REGION=us-east-1
@@ -165,7 +189,7 @@ This project is designed to work within AWS Free Tier limits:
 
 ## 🔒 Security Features
 
-- **JWT Authentication**: Secure token-based authentication
+- **JWT Authentication**: Secure token-based authentication (see Environment Variables section for secure key generation and rotation advice)
 - **Password Hashing**: bcrypt for password security
 - **Access Control**: Role-based permissions
 - **Input Validation**: Request validation and sanitization
