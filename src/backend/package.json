@@ -13,7 +13,7 @@
     "list-tables": "node setup-dynamodb.js list-tables"
   },
   "dependencies": {
-    "aws-sdk": "^2.1450.0",
+    "aws-sdk": "^2.1692.0",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
