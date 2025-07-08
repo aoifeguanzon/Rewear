@@ -51,7 +51,7 @@ async function setupDynamoDB() {
 
     // Step 3: Test DynamoDB connection
     console.log('🔗 Step 3: Testing DynamoDB connection...');
-    const dynamodb = new AWS.DynamoDB.DocumentClient();
+    const dynamodb = new AWS.DynamoDB();
     await dynamodb.listTables().promise();
     console.log('✅ DynamoDB connection successful!\n');
 
