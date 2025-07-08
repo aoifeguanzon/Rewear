@@ -9,7 +9,8 @@
     "test": "jest",
     "setup": "node setup-dynamodb.js setup",
     "add-member": "node setup-dynamodb.js add-member",
-    "list-members": "node setup-dynamodb.js list-members"
+    "list-members": "node setup-dynamodb.js list-members",
+    "list-tables": "node setup-dynamodb.js list-tables"
   },
   "dependencies": {
     "aws-sdk": "^2.1450.0",

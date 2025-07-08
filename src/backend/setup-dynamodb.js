@@ -128,6 +128,38 @@ function listTeamMembers() {
   }
 }
 
+/**
+ * List DynamoDB tables
+ */
+async function listDynamoDBTables() {
+  console.log('📋 Listing DynamoDB tables...\n');
+  
+  try {
+    const dynamodb = new AWS.DynamoDB();
+    const result = await dynamodb.listTables().promise();
+    
+    console.log('🏗️  DynamoDB Tables:');
+    if (result.TableNames.length === 0) {
+      console.log('No tables found in this region.');
+    } else {
+      result.TableNames.forEach((tableName, index) => {
+        console.log(`${index + 1}. ${tableName}`);
+      });
+    }
+    
+    // Check if our Users table exists
+    const usersTableExists = result.TableNames.includes('Users');
+    console.log(`\n✅ Users table exists: ${usersTableExists ? 'YES' : 'NO'}`);
+    
+  } catch (error) {
+    console.error('❌ Error listing tables:', error.message);
+    console.log('\n🔧 Troubleshooting:');
+    console.log('1. Check your AWS credentials in .env file');
+    console.log('2. Verify your AWS region is correct');
+    console.log('3. Ensure you have DynamoDB permissions');
+  }
+}
+
 // CLI interface
 if (require.main === module) {
   const args = process.argv.slice(2);
@@ -148,12 +180,16 @@ if (require.main === module) {
     case 'list-members':
       listTeamMembers();
       break;
+    case 'list-tables':
+      listDynamoDBTables();
+      break;
     default:
       console.log('ReWear DynamoDB Setup Script\n');
       console.log('Usage:');
       console.log('  node setup-dynamodb.js setup                    - Setup DynamoDB table and environment');
       console.log('  node setup-dynamodb.js add-member <key> <name> <email> [level] - Add team member');
       console.log('  node setup-dynamodb.js list-members             - List current team members');
+      console.log('  node setup-dynamodb.js list-tables              - List DynamoDB tables');
       console.log('\nAccess levels: admin, developer, viewer, readonly');
   }
 }
@@ -161,5 +197,6 @@ if (require.main === module) {
 module.exports = {
   setupDynamoDB,
   addTeamMember,
-  listTeamMembers
+  listTeamMembers,
+  listDynamoDBTables
 }; 
