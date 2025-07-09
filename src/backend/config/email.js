@@ -66,7 +66,7 @@ const sendVerificationEmail = async (email, verificationCode) => {
         
         <div style="background-color: #f8f9fa; padding: 20px; text-align: center;">
           <p style="color: #666; margin: 0; font-size: 12px;">
-            © 2024 ReWear. All rights reserved.
+            © 2025 ReWear. All rights reserved.
           </p>
         </div>
       </div>
