@@ -123,6 +123,48 @@ If your `.env` file is private, teammates will not have the admin key by default
 
 **Best Practice:** Use a team secrets manager (like 1Password, LastPass, Bitwarden, or your organization's vault solution) to distribute and manage sensitive keys.
 
+## Sharing the Users Table Among Teammates
+
+To ensure all team members access the same Users table, use a centralized AWS DynamoDB table and shared credentials.
+
+### 1. Use a Central AWS DynamoDB Table
+- Create the Users table in your AWS account (if not already done).
+- All teammates should use the same AWS credentials (or IAM roles) with access to this table.
+
+### 2. Share AWS Credentials Securely
+- Store these in your `.env` file:
+  ```
+  AWS_ACCESS_KEY_ID=your-aws-access-key
+  AWS_SECRET_ACCESS_KEY=your-aws-secret-key
+  AWS_REGION=your-aws-region
+  DYNAMODB_TABLE_NAME=Users
+  ```
+- Do **not** commit `.env` to version control.
+- Share credentials securely (e.g., password manager, vault).
+
+### 3. Configure the Backend
+- Every teammate’s `.env` should point to the same table and AWS account.
+- The backend will use these variables to connect to DynamoDB.
+
+### 4. IAM Permissions
+- The AWS user/role must have DynamoDB permissions (`GetItem`, `PutItem`, `UpdateItem`, etc.) on the Users table.
+
+### 5. Best Practices
+- Rotate AWS credentials regularly.
+- Use IAM roles with least privilege.
+- Never share AWS root credentials.
+- Use a secrets manager for sharing credentials if possible.
+
+### Summary Table
+| What to Share           | How to Share                | Where to Use                |
+|------------------------ |----------------------------|-----------------------------|
+| AWS credentials         | Secure vault/password mgr   | Each teammate’s `.env`      |
+| Table name (`Users`)    | Docs or `.env`              | Each teammate’s `.env`      |
+| AWS region              | Docs or `.env`              | Each teammate’s `.env`      |
+
+---
+By following these steps, all teammates will read/write to the same shared Users table in AWS DynamoDB.
+
 ## 🏗️ Project Structure
 
 ```
