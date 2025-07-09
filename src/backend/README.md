@@ -283,3 +283,43 @@ This project is designed to work within AWS Free Tier limits:
 ---
 
 **Remember**: This is a shared resource. Be respectful of other team members and the free tier limits! 
+
+## Account Management: Common Commands
+
+Below are example commands for managing user accounts and admin setup via the API. Replace values in <> as needed.
+
+### 1. Register (Sign Up)
+```sh
+curl -X POST http://localhost:5000/api/auth/signup \
+  -H "Content-Type: application/json" \
+  -H "x-access-key-id: <your-admin-access-key>" \
+  -d '{"username":"newuser","email":"newuser@example.com","password":"StrongPassword123"}'
+```
+
+### 2. Resend Verification Code
+```sh
+curl -X POST http://localhost:5000/api/auth/resend-verification \
+  -H "Content-Type: application/json" \
+  -d '{"email":"newuser@example.com"}'
+```
+
+### 3. Verify Email
+```sh
+curl -X POST http://localhost:5000/api/auth/verify-email \
+  -H "Content-Type: application/json" \
+  -d '{"email":"newuser@example.com","code":"123456"}'
+```
+
+### 4. Login
+```sh
+curl -X POST http://localhost:5000/api/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"email":"newuser@example.com","password":"StrongPassword123"}'
+```
+
+### 5. Admin Setup Notes
+- Add your admin key to `.env` as `ADMIN_ACCESS_KEY_ID` and to `AUTHORIZED_USERS` in `config/userAccess.js`.
+- Use the admin key in the `x-access-key-id` header for protected endpoints.
+
+---
+These commands can be run from any terminal with `curl` installed. For more details, see the relevant API documentation sections above. 
