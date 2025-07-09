@@ -43,6 +43,40 @@ EMAIL_FROM=noreply@rewear.com
 FRONTEND_URL=http://localhost:5173
 ```
 
+## Admin Access Key Setup
+
+To enable admin features, you must set the `ADMIN_ACCESS_KEY_ID` environment variable in your `.env` file:
+
+```
+ADMIN_ACCESS_KEY_ID=your-secure-admin-key
+```
+
+- Replace `your-secure-admin-key` with a strong, unique value (at least 32 random characters).
+- Keep this value secret and never commit your `.env` file to version control.
+- Rotate the key periodically for security.
+- Only use the admin key for initial setup or critical admin operations.
+
+**Example command to generate a strong key:**
+```
+node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+```
+
+## Admin Access Key Usage and Team Access
+
+- The `ADMIN_ACCESS_KEY_ID` is used for admin authentication in the backend application, not for AWS Console or AWS IAM access.
+- You can log in as an admin by including the admin access key in your API requests (e.g., in the `x-access-key-id` header), without needing to access the AWS Console.
+
+### Sharing Admin Access with Teammates
+
+If your `.env` file is private, teammates will not have the admin key by default. To allow teammates to log in as admin:
+
+- **Securely share the admin key** (e.g., via a secure password manager, encrypted message, or a secure team vault).
+- Each teammate should add the same `ADMIN_ACCESS_KEY_ID` value to their own `.env` file in the backend directory.
+- Never share the `.env` file via email, chat, or version control.
+- Rotate the admin key if a teammate leaves or if you suspect it has been compromised.
+
+**Best Practice:** Use a team secrets manager (like 1Password, LastPass, Bitwarden, or your organization's vault solution) to distribute and manage sensitive keys.
+
 ### 3. **Get Your Access Credentials**
 
 #### 3.1 Request Access from Admin
