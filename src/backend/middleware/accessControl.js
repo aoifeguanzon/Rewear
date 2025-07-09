@@ -107,7 +107,8 @@ const logAccess = (req, res, next) => {
   const path = req.path;
   const user = req.accessUser?.name || 'Unknown';
   const accessLevel = req.accessUser?.accessLevel || 'Unknown';
-  const ip = req.ip || req.connection.remoteAddress;
+  // Use req.socket.remoteAddress instead of deprecated req.connection.remoteAddress
+  const ip = req.ip || req.socket.remoteAddress;
 
   console.log(`[${timestamp}] ${method} ${path} - User: ${user} (${accessLevel}) - IP: ${ip}`);
   
