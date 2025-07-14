@@ -7,6 +7,7 @@ brief This is the profile page for the user.
 import React from 'react';
 import { ChevronRight, ChevronLeft, Lock, Info } from 'lucide-react';
 import { Outlet, Link, useLocation } from 'react-router-dom';
+import Navbar from '../components/Navbar'; // Import your existing Navbar component
 
 const ProfilePage = () => {
   const location = useLocation();
@@ -62,23 +63,8 @@ const ProfilePage = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white border-b border-gray-200 px-4 py-3">
-        <div className="flex items-center justify-between max-w-6xl mx-auto">
-          <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center">
-              <div className="w-4 h-4 bg-white rounded-sm"></div>
-            </div>
-            <span className="text-xl font-bold text-gray-900">ReWear</span>
-          </div>
-          <nav className="flex space-x-6">
-            <a href="#" className="text-gray-600 hover:text-gray-900 text-sm font-medium">Home</a>
-            <a href="#" className="text-gray-900 text-sm font-medium">Profile</a>
-            <a href="#" className="text-gray-600 hover:text-gray-900 text-sm font-medium">Social</a>
-            <a href="#" className="text-gray-600 hover:text-gray-900 text-sm font-medium">Settings</a>
-          </nav>
-        </div>
-      </header>
+      {/* Use your existing Navbar component */}
+      <Navbar />
 
       <div className="max-w-6xl mx-auto px-4 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
