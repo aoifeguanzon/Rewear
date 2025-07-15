@@ -7,3 +7,7 @@ frontend/start-basic.bat
 frontend/start-dev.bat
 frontend/start-simple.bat
 frontend/install-deps.bat
+.env
+env/
+__pycache__/
+*.pyc
