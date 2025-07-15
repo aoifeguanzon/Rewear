@@ -1,1 +1,9 @@
-node_modules
+frontend/node_modules/
+backend/node_modules/
+node_modules/
+.expo/
+.venv/
+frontend/start-basic.bat
+frontend/start-dev.bat
+frontend/start-simple.bat
+frontend/install-deps.bat
