@@ -365,3 +365,39 @@ curl -X POST http://localhost:5000/api/auth/login \
 
 ---
 These commands can be run from any terminal with `curl` installed. For more details, see the relevant API documentation sections above. 
+
+---
+
+## 🧩 Wardrobe Image Matching Service (Python)
+
+This backend includes a Python microservice for matching user-uploaded wardrobe images to secondhand items in the selected region (country, city).
+
+### Setup Instructions
+
+1. Navigate to the Python service directory:
+   ```sh
+   cd src/backend/python-matching-service
+   ```
+2. (Recommended) Create a virtual environment:
+   ```sh
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
+3. Install dependencies:
+   ```sh
+   pip install -r requirements.txt
+   ```
+
+### Running the Service
+
+Start the FastAPI server:
+```sh
+uvicorn main:app --reload
+```
+By default, the service runs on `http://127.0.0.1:8000`.
+
+### Integration
+- The Node.js backend exposes a new route: `POST /api/match-wardrobe`
+- This route accepts an image and region info, forwards them to the Python service, and returns a list of matching wardrobe items.
+
+--- 
