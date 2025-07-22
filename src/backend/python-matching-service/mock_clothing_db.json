@@ -1,0 +1,19 @@
+[
+  {"id": "t1", "name": "Red T-Shirt", "category": "top", "color": "red", "embedding": [0.1, 0.2, 0.3, 0.4, 0.5]},
+  {"id": "t2", "name": "Blue Shirt", "category": "top", "color": "blue", "embedding": [0.2, 0.1, 0.4, 0.3, 0.6]},
+  {"id": "t3", "name": "Green Blouse", "category": "top", "color": "green", "embedding": [0.3, 0.3, 0.2, 0.5, 0.1]},
+  {"id": "t4", "name": "Black Tank Top", "category": "top", "color": "black", "embedding": [0.5, 0.4, 0.1, 0.2, 0.3]},
+  {"id": "t5", "name": "White Tee", "category": "top", "color": "white", "embedding": [0.6, 0.2, 0.1, 0.3, 0.4]},
+
+  {"id": "b1", "name": "Red Jeans", "category": "bottom", "color": "red", "embedding": [0.1, 0.3, 0.2, 0.5, 0.4]},
+  {"id": "b2", "name": "Blue Shorts", "category": "bottom", "color": "blue", "embedding": [0.2, 0.4, 0.1, 0.6, 0.3]},
+  {"id": "b3", "name": "Green Skirt", "category": "bottom", "color": "green", "embedding": [0.3, 0.2, 0.5, 0.1, 0.4]},
+  {"id": "b4", "name": "Black Pants", "category": "bottom", "color": "black", "embedding": [0.4, 0.5, 0.3, 0.2, 0.1]},
+  {"id": "b5", "name": "White Trousers", "category": "bottom", "color": "white", "embedding": [0.5, 0.1, 0.4, 0.3, 0.2]},
+
+  {"id": "s1", "name": "Red Sneakers", "category": "shoes", "color": "red", "embedding": [0.2, 0.1, 0.5, 0.3, 0.4]},
+  {"id": "s2", "name": "Blue Sandals", "category": "shoes", "color": "blue", "embedding": [0.3, 0.2, 0.4, 0.1, 0.5]},
+  {"id": "s3", "name": "Green Flats", "category": "shoes", "color": "green", "embedding": [0.4, 0.3, 0.1, 0.5, 0.2]},
+  {"id": "s4", "name": "Black Boots", "category": "shoes", "color": "black", "embedding": [0.5, 0.4, 0.2, 0.1, 0.3]},
+  {"id": "s5", "name": "White Loafers", "category": "shoes", "color": "white", "embedding": [0.1, 0.5, 0.3, 0.2, 0.4]}
+] 

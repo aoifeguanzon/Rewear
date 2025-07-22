@@ -11,6 +11,10 @@ from typing import List
 import uvicorn
 from PIL import Image
 import io
+import json
+import os
+import math
+import itertools
 
 # Import CLIP model and processor from HuggingFace Transformers
 # Purpose: CLIP is a state-of-the-art model for extracting semantic image (and text) embeddings.
@@ -43,31 +47,67 @@ def match_wardrobe(
         pil_image = Image.open(io.BytesIO(image_bytes)).convert("RGB")
 
         # Preprocess the image for CLIP
-        # Purpose: The processor resizes, normalizes, and converts the image to a tensor
         inputs = clip_processor(images=pil_image, return_tensors="pt")
 
         # Extract the image embedding using CLIP
-        # Purpose: get_image_features returns a high-dimensional vector representing the image's content
         with torch.no_grad():
             image_features = clip_model.get_image_features(**inputs)
+        user_embedding = image_features[0].cpu().tolist()
 
-        # Convert the embedding tensor to a list for easier debugging/inspection
-        embedding_list = image_features[0].cpu().tolist()
+        # --- DEMO RECOMMENDATION LOGIC ---
+        # 1. Load mock dataset
+        db_path = os.path.join(os.path.dirname(__file__), "mock_clothing_db.json")
+        with open(db_path, "r") as f:
+            clothing_db = json.load(f)
 
-        # Debugging tip: If you get a CUDA error, ensure torch is installed with GPU support or use CPU only.
-        # For production, compare this embedding to those in your wardrobe database.
+        # 2. Compute similarity (cosine similarity)
+        def cosine_similarity(a, b):
+            dot = sum(x*y for x, y in zip(a, b))
+            norm_a = math.sqrt(sum(x*x for x in a))
+            norm_b = math.sqrt(sum(y*y for y in b))
+            return dot / (norm_a * norm_b + 1e-8)
+
+        for item in clothing_db:
+            item["similarity"] = cosine_similarity(user_embedding, item["embedding"])
+
+        # 3. Sort items by similarity (descending)
+        clothing_db.sort(key=lambda x: x["similarity"], reverse=True)
+
+        # 4. Group by category and take top-N per category
+        categories = ["top", "bottom", "shoes"]
+        top_n = 5
+        items_by_cat = {cat: [item for item in clothing_db if item["category"] == cat][:top_n] for cat in categories}
+
+        # 5. Generate all possible outfit combinations (one from each category)
+        outfit_combos = list(itertools.product(*[items_by_cat[cat] for cat in categories]))
+
+        # 6. Score each outfit (simple rule: sum of similarities + bonus if all items are same color)
+        def score_outfit(outfit):
+            sim_sum = sum(item["similarity"] for item in outfit)
+            colors = set(item["color"] for item in outfit)
+            bonus = 1.0 if len(colors) == 1 else 0.0
+            return sim_sum + bonus
+
+        scored_outfits = [
+            {"outfit": [
+                {"id": item["id"], "name": item["name"], "category": item["category"], "color": item["color"], "similarity": item["similarity"]}
+                for item in combo
+            ], "score": score_outfit(combo)}
+            for combo in outfit_combos
+        ]
+        scored_outfits.sort(key=lambda x: x["score"], reverse=True)
+        top_outfits = scored_outfits[:3]
 
         return JSONResponse(content={
-            "embedding": embedding_list,
+            "recommendations": top_outfits,
             "country": country,
             "city": city,
-            "message": "Image embedding extracted successfully. Compare this to your wardrobe DB for matching."
+            "message": "Top outfit recommendations generated successfully."
         })
     except Exception as e:
-        # Debugging tip: If you see PIL errors, check the uploaded file is a valid image.
         return JSONResponse(status_code=500, content={
             "error": str(e),
-            "message": "Failed to process image. Ensure the file is a valid image and model dependencies are installed."
+            "message": "Failed to process image or generate recommendations."
         })
 
 if __name__ == "__main__":
