@@ -19,7 +19,7 @@
   justify-content: center;
 }
 
-.signup-section {
+.green-section {
   width: 50vw;
   height: 100vh;
   background-color: #81A281;
@@ -38,7 +38,7 @@
   }
 
   .logo-section,
-  .signup-section {
+  .green-section {
     width: 100vw;
     height: auto;
   }
@@ -57,12 +57,12 @@
   text-decoration: none;
 }
 
-.signup-subtitle {
+.auth-subtitle {
   margin-bottom: 32px;
   text-align: center;
 }
 
-.signup-form {
+.auth-form {
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -70,7 +70,7 @@
   max-width: 400px;
 }
 
-.signup-input {
+.auth-input {
   padding: 12px;
   font-size: 1rem;
   border: none;
@@ -79,19 +79,19 @@
   font-family: 'Gabarito';
 }
 
-.signup-button:hover {
+.auth-button:hover {
   background-color: #f0f0f0;
 }
 
-.login-link {
+.switch-link {
   font-size: 1.25em;
 }
 
-.login-anchor {
+.switch-anchor {
   font-weight: bold;
   text-decoration: none;
 }
 
-.login-anchor:hover {
+.switch-anchor:hover {
   text-decoration: underline;
 }

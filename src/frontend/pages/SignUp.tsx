@@ -23,42 +23,43 @@ const SignUp: React.FC = () => {
     <div className="signup-page">
       <Link to="/" className="back-button">Back</Link>
 
-      <div className='signup-section'>
+      <div className='green-section'>
       <h1 className="title">Sign up</h1>
-      <div className="signup-subtitle">
-        <h2>Where style meets sustainability.</h2>
-        <h2>Join the movement.</h2>
+      <div className="auth-subtitle">
+        <h2>Where style meets sustainability.
+          <br /><b>Join the movement.</b>
+        </h2>
       </div>
 
-      <form className="signup-form" onSubmit={handleSubmit}>
+      <form className="auth-form" onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="Username"
           value={username}
           onChange={e => setUsername(e.target.value)}
-          className="signup-input"
+          className="auth-input"
         />
         <input
           type="email"
           placeholder="Email"
           value={email}
           onChange={e => setEmail(e.target.value)}
-          className="signup-input"
+          className="auth-input"
         />
         <input
           type="password"
           placeholder="Password"
           value={password}
           onChange={e => setPassword(e.target.value)}
-          className="signup-input"
+          className="auth-input"
         />
         <button type="submit" className="big-dark-button">
           <h1>Create account</h1>
         </button>
       </form>
 
-      <div className="login-link">
-        <p>Already with us? <Link to="/login" className="login-anchor">Log in</Link></p>
+      <div className="switch-link">
+        <p>Already with us? <Link to="/login" className="switch-anchor">Log in</Link></p>
       </div>
     </div>
 
