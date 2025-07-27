@@ -1,61 +1,71 @@
 /**
  * @file SignUp.tsx
- * @author Huy Le (huyisme-005)
+ * @author Huy Lee, Aoife Guanzon
  * @brief Sign up page
  */
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import '../App.css';
+import { Link, useNavigate } from 'react-router-dom';
+import './SignUp.css';
+import icon from '../assets/icon.png'
 
 const SignUp: React.FC = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    navigate('/home');
+  };
 
   return (
-    <div className="centered-page px-4" style={{ position: 'relative' }}>
-      {/* Back Arrow */}
-      <Link to="/" style={{ position: 'absolute', top: 24, left: 24, display: 'flex', alignItems: 'center', textDecoration: 'none' }} aria-label="Back to splash">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="19" y1="12" x2="5" y2="12" /><polyline points="12 19 5 12 12 5" /></svg>
-      </Link>
-      <h1 className="text-6xl font-light mb-4">Sign up</h1>
-      <div className="subtitle text-lg mb-8">
-        <div>Where style meets sustainability.</div>
-        <div>Join the movement.</div>
+    <div className="signup-page">
+      <Link to="/" className="back-button">Back</Link>
+
+      <div className='signup-section'>
+      <h1 className="title">Sign up</h1>
+      <div className="signup-subtitle">
+        <h2>Where style meets sustainability.</h2>
+        <h2>Join the movement.</h2>
       </div>
-      <form className="centered-form" style={{marginTop: 0}}>
+
+      <form className="signup-form" onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="Username"
           value={username}
           onChange={e => setUsername(e.target.value)}
-          className="border border-black px-3 py-2 text-lg rounded-none focus:outline-none"
+          className="signup-input"
         />
         <input
           type="email"
           placeholder="Email"
           value={email}
           onChange={e => setEmail(e.target.value)}
-          className="border border-black px-3 py-2 text-lg rounded-none focus:outline-none"
+          className="signup-input"
         />
         <input
           type="password"
           placeholder="Password"
           value={password}
           onChange={e => setPassword(e.target.value)}
-          className="border border-black px-3 py-2 text-lg rounded-none focus:outline-none"
+          className="signup-input"
         />
-        <button
-          type="submit"
-          className="border border-black text-2xl py-2 mt-2 bg-white hover:bg-gray-100 transition-colors"
-        >
+        <button type="submit" className="signup-button">
           Create account
         </button>
       </form>
-      <div className="login-link mt-4 text-lg">
-        Already with us?{' '}
-        <Link to="/login" className="font-bold underline hover:no-underline">Log in</Link>
+
+      <div className="login-link">
+        <p>Already with us? <Link to="/login" className="login-anchor">Log in</Link></p>
       </div>
+    </div>
+
+      <div className='logo-section'>
+        <img src={icon} alt="Logo" />
+      </div>
+
     </div>
   );
 };

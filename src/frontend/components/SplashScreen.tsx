@@ -22,7 +22,7 @@ const SplashScreen: React.FC = () => {
         />
       ) : (
         <div className="splash-logo-error">
-          Logo not found
+          <p>Logo not found</p>
         </div>
       )}
 
@@ -31,13 +31,13 @@ const SplashScreen: React.FC = () => {
           className="splash-button"
           onClick={() => navigate('/signup')}
         >
-          New user
+          <h1>New user</h1>
         </button>
         <button
           className="splash-button"
           onClick={() => navigate('/login')}
         >
-          Returning User
+          <h1>Existing user</h1>
         </button>
       </div>
     </div>

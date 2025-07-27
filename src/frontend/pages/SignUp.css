@@ -1,0 +1,104 @@
+.signup-page {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+}
+
+.logo-section {
+  width: 50vw;
+  height: 100vh;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.signup-section {
+  width: 50vw;
+  height: 100vh;
+  background-color: #81A281;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+@media (max-width: 1024px) {
+  .signup-page {
+    flex-direction: column;
+  }
+
+  .logo-section,
+  .signup-section {
+    width: 100vw;
+    height: auto;
+  }
+}
+
+.title{
+  font-size: 5em;
+  margin: 0.5rem;
+}
+
+.back-button {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  text-decoration: none;
+}
+
+.signup-subtitle {
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.signup-input {
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid black;
+  border-radius: 4px;
+  outline: none;
+}
+
+.signup-button {
+  font-size: 1.25rem;
+  padding: 12px;
+  background-color: white;
+  border: 1px solid black;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.signup-button:hover {
+  background-color: #f0f0f0;
+}
+
+.login-link {
+  font-size: 1.25em;
+}
+
+.login-anchor {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.login-anchor:hover {
+  text-decoration: none;
+}

@@ -68,7 +68,7 @@ function UploadWidget({ onSearch }) {
 
   const handleSearch = () => {
     alert(`Searching for: ${link}`);
-    onSearch(); // call the function passed from Home to show results
+    onSearch();
   };
 
   return (

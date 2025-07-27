@@ -20,7 +20,6 @@
   color: white;
   margin: 15px 0;
   width: 100%;
-  font-family: 'Gabarito';
   border: none;
   background-color: #003201;
   border-radius: 15px;
@@ -58,7 +57,7 @@
     width: 100%;
 }
 
-button:hover, input[type="text"]:hover{
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+.product-link-input:hover{
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
     cursor: pointer;
 }
