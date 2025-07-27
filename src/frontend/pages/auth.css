@@ -47,6 +47,7 @@
 .title{
   font-size: 5em;
   margin: 0.5rem;
+  font-family: 'Montserrat';
 }
 
 .back-button {
@@ -72,18 +73,10 @@
 .signup-input {
   padding: 12px;
   font-size: 1rem;
-  border: 1px solid black;
-  border-radius: 4px;
+  border: none;
+  border-radius: 5px;
   outline: none;
-}
-
-.signup-button {
-  font-size: 1.25rem;
-  padding: 12px;
-  background-color: white;
-  border: 1px solid black;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  font-family: 'Gabarito';
 }
 
 .signup-button:hover {
@@ -96,9 +89,9 @@
 
 .login-anchor {
   font-weight: bold;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .login-anchor:hover {
-  text-decoration: none;
+  text-decoration: underline;
 }

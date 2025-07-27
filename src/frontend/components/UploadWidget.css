@@ -16,18 +16,6 @@
   border-radius: 5px;
 }
 
-.widget-button {
-  color: white;
-  margin: 15px 0;
-  width: 100%;
-  border: none;
-  background-color: #003201;
-  border-radius: 15px;
-}
-
-.submit{
-  justify-self: flex-end;
-}
 
 .product-link-label{
   margin: 0;

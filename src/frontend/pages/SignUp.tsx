@@ -5,7 +5,7 @@
  */
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import './SignUp.css';
+import './auth.css';
 import icon from '../assets/icon.png'
 
 const SignUp: React.FC = () => {
@@ -52,8 +52,8 @@ const SignUp: React.FC = () => {
           onChange={e => setPassword(e.target.value)}
           className="signup-input"
         />
-        <button type="submit" className="signup-button">
-          Create account
+        <button type="submit" className="big-dark-button">
+          <h1>Create account</h1>
         </button>
       </form>
 

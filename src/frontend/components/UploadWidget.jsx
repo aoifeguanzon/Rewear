@@ -11,7 +11,7 @@ function UploadImage() {
 
 function UploadButton() {
     return(
-        <button className='widget-button'><h1>Upload image</h1></button>
+        <button className='big-dark-button'><h1>Upload image</h1></button>
     )
 }
 
@@ -57,7 +57,7 @@ function PriceRangeSlider() {
 
 function UploadSearchButton({ onClick }) {
   return (
-    <button className='widget-button submit' onClick={onClick}>
+    <button className='big-dark-button submit' onClick={onClick}>
       <h1>Search for item</h1>
     </button>
   );
