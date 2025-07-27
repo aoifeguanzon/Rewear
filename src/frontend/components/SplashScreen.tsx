@@ -1,44 +1,40 @@
 /**
  * @file SplashScreen.tsx
- * @author Huy Le (huyisme-005)
+ * @author Huy Le, Aoife Guanzon
  * @brief This is the code for the splash screen.
  */
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../App.css';
+import './SplashScreen.css';
 
-/**
- * This is the SplashScreen variable to represent the landing page.
- * @returns the splash screen
- */
 const SplashScreen: React.FC = () => {
   const [imgError, setImgError] = useState(false);
   const navigate = useNavigate();
 
   return (
-    <div className="flex flex-col items-center justify-center w-full min-h-screen bg-white">
+    <div className="splash-container">
       {!imgError ? (
         <img
           src="assets/logo.png"
           alt="Logo"
-          style={{ width: '1400px', height: '300px', borderRadius: '0.05rem', objectFit: 'contain' }}
+          className="splash-logo"
           onError={() => setImgError(true)}
         />
       ) : (
-        <div style={{ width: '1400px', height: '300px' }} className="flex items-center justify-center bg-gray-100 rounded text-gray-100 text-xl">
+        <div className="splash-logo-error">
           Logo not found
         </div>
       )}
-      {/* Vertically Centered Buttons Section */}
-      <div className="centered-buttons">
+
+      <div className="button-container">
         <button
-          className="w-full px-4 py-2 border border-gray-700 rounded bg-white text-black font-medium hover:bg-gray-100 transition-colors"
+          className="splash-button"
           onClick={() => navigate('/signup')}
         >
           New user
         </button>
         <button
-          className="w-full px-4 py-2 border border-gray-700 rounded bg-white text-black font-medium hover:bg-gray-100 transition-colors"
+          className="splash-button"
           onClick={() => navigate('/login')}
         >
           Returning User
@@ -48,4 +44,4 @@ const SplashScreen: React.FC = () => {
   );
 };
 
-export default SplashScreen; //export it to make sure it gets displayed
+export default SplashScreen;
