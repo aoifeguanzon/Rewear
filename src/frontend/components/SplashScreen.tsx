@@ -5,7 +5,7 @@
  */
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../../App.css';
+import '../App.css';
 
 /**
  * This is the SplashScreen variable to represent the landing page.
@@ -19,7 +19,7 @@ const SplashScreen: React.FC = () => {
     <div className="flex flex-col items-center justify-center w-full min-h-screen bg-white">
       {!imgError ? (
         <img
-          src="assets/logo.jpg"
+          src="assets/logo.png"
           alt="Logo"
           style={{ width: '1400px', height: '300px', borderRadius: '0.05rem', objectFit: 'contain' }}
           onError={() => setImgError(true)}

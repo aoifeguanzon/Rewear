@@ -6,9 +6,10 @@
 
 import React from 'react';//React plays a significant role in frontend development by providing a component-based approach to building user interfaces, enabling efficient rendering and reusability
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import SplashScreen from './components/SplashScreen/SplashScreen';
+import SplashScreen from './components/SplashScreen';
 import SignUp from './pages/SignUp';
 import Login from './pages/Login';
+import Home from './pages/Home';
 
 const App: React.FC = () => (
   <Router>
@@ -16,6 +17,7 @@ const App: React.FC = () => (
       <Route path="/" element={<SplashScreen />} />
       <Route path="/signup" element={<SignUp />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/home" element={<Home/>} />
     </Routes>
   </Router>
 );
