@@ -37,9 +37,9 @@ function PriceRangeSlider() {
   };
 
   return (
-    <div style={{ width: '100%', margin: '20px 0' }}>
-      <label htmlFor="priceRange" style={{ display: 'block', color: 'white', fontFamily: 'Montserrat', textAlign: 'center' }}>
-       <h3>Maximum price: ${price}</h3>
+    <div className="price-range-container">
+      <label htmlFor="priceRange" className="price-range-label">
+        <h3>Maximum price: ${price}</h3>
       </label>
       <input
         id="priceRange"
@@ -48,11 +48,12 @@ function PriceRangeSlider() {
         max="50"
         value={price}
         onChange={handleChange}
-        style={{ width: '100%', boxSizing: 'border-box', display: 'block',accentColor: '#003201'}}
+        className="price-range-input"
       />
     </div>
   );
 }
+
 
 
 function UploadSearchButton({ onClick }) {

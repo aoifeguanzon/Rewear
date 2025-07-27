@@ -5,7 +5,7 @@
  */
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import './auth.css';
+import './AuthPage.css';
 import icon from '../assets/icon.png'
 
 const SignUp: React.FC = () => {
