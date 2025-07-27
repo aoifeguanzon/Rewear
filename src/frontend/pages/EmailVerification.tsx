@@ -21,7 +21,7 @@ const EmailVerification: React.FC = () => {
 
   const handleVerification = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!verificationCode || !email) {
       setError('Please enter both email and verification code');
       return;
@@ -98,13 +98,13 @@ const EmailVerification: React.FC = () => {
     }
   };
 
-  return (
+return (
     <div className="centered-page px-4" style={{ position: 'relative' }}>
       {/* Back Arrow */}
       <Link to="/signup" style={{ position: 'absolute', top: 24, left: 24, display: 'flex', alignItems: 'center', textDecoration: 'none' }} aria-label="Back to signup">
         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="19" y1="12" x2="5" y2="12" /><polyline points="12 19 5 12 12 5" /></svg>
       </Link>
-      
+
       <h1 className="text-6xl font-light mb-4">Verify Email</h1>
       <div className="subtitle text-lg mb-8">
         <div>Check your email for the verification code.</div>
@@ -169,4 +169,4 @@ const EmailVerification: React.FC = () => {
   );
 };
 
-export default EmailVerification; 
+export default EmailVerification;
