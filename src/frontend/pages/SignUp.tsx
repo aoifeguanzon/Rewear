@@ -1,11 +1,12 @@
 /**
  * @file SignUp.tsx
- * @author Huy Lee, Aoife Guanzon
+ * @author Huy Le (huyisme-005), Aoife Guanzon
  * @brief Sign up page
  */
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './AuthPage.css';
+//@ts-ignore
 import icon from '../assets/icon.png'
 
 const SignUp: React.FC = () => {
@@ -14,10 +15,38 @@ const SignUp: React.FC = () => {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // Added: State for error, success, and loading feedback for signup API call
+  // These states are used to show messages and loading spinner during signup
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    navigate('/home');
-  };
+    setError('');
+    setSuccess('');
+    setLoading(true);
+    // Added: Send signup data to backend API and handle response
+    // Responsible for creating user account and redirecting to email verification
+    try {
+      const res = await fetch('/api/auth/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, email, password })
+      });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        setSuccess(data.message || 'Account created!');
+        // Optionally redirect to verification page
+        navigate('/verify-email', { state: { email } });
+      } else {
+        setError(data.message || 'Signup failed');
+      }
+    } catch (err) {
+      setError('Network error. Please try again.');
+    }
+    setLoading(false);
+  } 
 
   return (
     <div className="signup-page">
@@ -56,6 +85,10 @@ const SignUp: React.FC = () => {
         <button type="submit" className="big-dark-button">
           <h1>Create account</h1>
         </button>
+        {/* Added: Show error, success, and loading messages for signup process */}
+        {error && <div className="error-message">{error}</div>}
+        {success && <div className="success-message">{success}</div>}
+        {loading && <div className="loading-message">Creating account...</div>}
       </form>
 
       <div className="switch-link">

@@ -1,17 +1,35 @@
+/**
+ * @file EmailVerification.tsx
+ * @author Huy Le (huyisme-005)
+ * @brief Page for verifying user email after signup. Handles code input, resend, and verification logic.
+ */
 import React, { useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import '../App.css';
 
+/**
+ * EmailVerification component
+ * Renders form for user to verify their email using a code sent to their inbox.
+ */
 const EmailVerification: React.FC = () => {
+  // State for verification code input
   const [verificationCode, setVerificationCode] = useState('');
+  // State for email input
   const [email, setEmail] = useState('');
+  // State for loading indicator
   const [isLoading, setIsLoading] = useState(false);
+  // State for success message
   const [message, setMessage] = useState('');
+  // State for error message
   const [error, setError] = useState('');
+  // React Router navigation
   const navigate = useNavigate();
+  // Search params for extracting email from URL
   const [searchParams] = useSearchParams();
 
-  // Get email from URL params if available
+  /**
+   * Effect: Get email from URL params if available
+   */
   React.useEffect(() => {
     const emailParam = searchParams.get('email');
     if (emailParam) {
@@ -19,6 +37,10 @@ const EmailVerification: React.FC = () => {
     }
   }, [searchParams]);
 
+  /**
+   * Handles verification form submission
+   * Sends POST request to backend to verify email with code
+   */
   const handleVerification = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -65,6 +87,10 @@ const EmailVerification: React.FC = () => {
     }
   };
 
+  /**
+   * Handles resend code button click
+   * Sends POST request to backend to resend verification code
+   */
   const handleResendCode = async () => {
     if (!email) {
       setError('Please enter your email address');
@@ -99,7 +125,7 @@ const EmailVerification: React.FC = () => {
   };
 
 return (
-    <div className="centered-page px-4" style={{ position: 'relative' }}>
+    <div className="centered-page px-4 relative-position">
       {/* Back Arrow */}
       <Link to="/signup" style={{ position: 'absolute', top: 24, left: 24, display: 'flex', alignItems: 'center', textDecoration: 'none' }} aria-label="Back to signup">
         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="19" y1="12" x2="5" y2="12" /><polyline points="12 19 5 12 12 5" /></svg>
@@ -123,7 +149,7 @@ return (
         </div>
       )}
 
-      <form className="centered-form" style={{marginTop: 0}} onSubmit={handleVerification}>
+      <form className="centered-form no-margin-top" onSubmit={handleVerification}>
         <input
           type="email"
           placeholder="Email"

@@ -1,11 +1,12 @@
 /**
  * @file Login.tsx
- * @author Huy Lee
+ * @author Huy Le (huyisme-005)
  * @brief Login page
  */
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './AuthPage.css';
+// @ts-ignore
 import icon from '../assets/icon.png';
 
 const Login: React.FC = () => {
@@ -13,9 +14,38 @@ const Login: React.FC = () => {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // Added: State for error and loading feedback for login API call
+  // These states are used to show messages and loading spinner during login
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    navigate('/home');
+    setError('');
+    setLoading(true);
+    // Added: Send login data to backend API and handle response
+    // Responsible for authenticating user and redirecting to home or verification page
+    try {
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: username, password })
+      });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        // Save token if needed: localStorage.setItem('token', data.token);
+        navigate('/home');
+      } else if (data.needsVerification) {
+        setError('Please verify your email before logging in.');
+        // Optionally redirect to verification page
+        // navigate('/verify-email', { state: { email: username } });
+      } else {
+        setError(data.message || 'Login failed');
+      }
+    } catch (err) {
+      setError('Network error. Please try again.');
+    }
+    setLoading(false);
   };
 
   return (
@@ -51,6 +81,9 @@ const Login: React.FC = () => {
           <button type="submit" className="big-dark-button">
             <h1>Log in</h1>
           </button>
+        {/* Added: Show error and loading messages for login process */}
+        {error && <div className="error-message">{error}</div>}
+        {loading && <div className="loading-message">Logging in...</div>}
         </form>
 
         <div className="switch-link">
