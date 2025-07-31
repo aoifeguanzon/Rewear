@@ -9,10 +9,19 @@ function UploadImage() {
     )
 }
 
-function UploadButton() {
-    return(
-        <button className='big-dark-button'><h1>Upload image</h1></button>
-    )
+// Added: UploadButton now triggers file input for image upload
+function UploadButton({ onImageSelect }) {
+    return (
+        <label className='big-dark-button' style={{ cursor: 'pointer' }}>
+            <h1>Upload image</h1>
+            <input
+                type='file'
+                accept='image/*'
+                style={{ display: 'none' }}
+                onChange={onImageSelect}
+            />
+        </label>
+    );
 }
 
 function ProductLinkInput({ onChange }) {
@@ -64,20 +73,57 @@ function UploadSearchButton({ onClick }) {
   );
 }
 
+/**
+ * UploadWidget component
+ * Now supports image upload and product link input for search.
+ */
 function UploadWidget({ onSearch }) {
+  // State for product link
   const [link, setLink] = useState('');
+  // Added: State for selected image file
+  const [image, setImage] = useState(null);
 
-  const handleSearch = () => {
-    alert(`Searching for: ${link}`);
-    onSearch();
+  // Added: Handle image selection from file input
+  const handleImageSelect = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      setImage(e.target.files[0]);
+    }
+  };
+
+  // Added: Handle search, including image upload if image is selected
+  const handleSearch = async () => {
+    // Example: send image and link to backend
+    if (image) {
+      const formData = new FormData();
+      formData.append('image', image);
+      formData.append('link', link);
+      // Replace URL with your backend endpoint
+      try {
+        const res = await fetch('/api/upload', {
+          method: 'POST',
+          body: formData
+        });
+        const data = await res.json();
+        // Handle response (show results, etc.)
+        alert('Image uploaded and search started!');
+      } catch (err) {
+        alert('Upload failed.');
+      }
+    } else {
+      alert(`Searching for: ${link}`);
+    }
+    if (onSearch) onSearch();
   };
 
   return (
     <div className='widget'>
       <div>
         <UploadImage />
-        <UploadButton />
+        {/* Added: Pass image select handler to UploadButton */}
+        <UploadButton onImageSelect={handleImageSelect} />
         <ProductLinkInput onChange={setLink} />
+        {/* Added: Show selected image name for user feedback */}
+        {image && <div className='selected-image'>Selected: {image.name}</div>}
       </div>
       <div className='widget-bottom'>
         <PriceRangeSlider />
