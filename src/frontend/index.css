@@ -33,14 +33,19 @@ a{
 }
 
 .big-dark-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: white;
   margin: 15px 0;
   width: 100%;
-  border: none;
   background-color: #003201;
   border-radius: 15px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   transition: background-color 0.3s ease;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
 }
 
 input {
