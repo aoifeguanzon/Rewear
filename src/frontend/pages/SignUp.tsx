@@ -37,7 +37,8 @@ const SignUp: React.FC = () => {
       const data = await res.json();
       if (res.ok && data.success) {
         setSuccess(data.message || 'Account created!');
-        // Optionally redirect to verification page
+        // Changed: Always redirect to EmailVerification page with email in state for smoother UX
+        // Debug tip: If verification page does not get the email, check that navigate passes { state: { email } }
         navigate('/verify-email', { state: { email } });
       } else {
         setError(data.message || 'Signup failed');

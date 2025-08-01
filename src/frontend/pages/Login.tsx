@@ -37,8 +37,9 @@ const Login: React.FC = () => {
         navigate('/home');
       } else if (data.needsVerification) {
         setError('Please verify your email before logging in.');
-        // Optionally redirect to verification page
-        // navigate('/verify-email', { state: { email: username } });
+        // Changed: Redirect to EmailVerification page with email in state if user needs verification
+        // Debug tip: If verification page does not get the email, check that navigate passes { state: { email: username } }
+        navigate('/verify-email', { state: { email: username } });
       } else {
         setError(data.message || 'Login failed');
       }

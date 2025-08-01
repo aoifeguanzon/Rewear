@@ -4,7 +4,7 @@
  * @brief Page for verifying user email after signup. Handles code input, resend, and verification logic.
  */
 import React, { useState } from 'react';
-import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams, useLocation } from 'react-router-dom';
 import '../App.css';
 
 /**
@@ -24,18 +24,27 @@ const EmailVerification: React.FC = () => {
   const [error, setError] = useState('');
   // React Router navigation
   const navigate = useNavigate();
-  // Search params for extracting email from URL
+  // React Router location for reading state (email from SignUp/Login)
+  const location = useLocation();
+  // Search params for extracting email from URL (fallback)
   const [searchParams] = useSearchParams();
 
   /**
-   * Effect: Get email from URL params if available
+   * Effect: Get email from React Router state (preferred) or URL params (fallback)
+   * Debug tip: If email is missing, check that navigate('/verify-email', { state: { email } }) is used in SignUp/Login.
    */
   React.useEffect(() => {
-    const emailParam = searchParams.get('email');
-    if (emailParam) {
-      setEmail(emailParam);
+    // Try to get email from navigation state (from SignUp/Login)
+    if (location.state && location.state.email) {
+      setEmail(location.state.email);
+    } else {
+      // Fallback: get email from URL param
+      const emailParam = searchParams.get('email');
+      if (emailParam) {
+        setEmail(emailParam);
+      }
     }
-  }, [searchParams]);
+  }, [location.state, searchParams]);
 
   /**
    * Handles verification form submission
