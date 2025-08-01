@@ -1,7 +1,7 @@
 /**
  * @file EmailVerification.tsx
  * @author Huy Le (huyisme-005)
- * @brief Page for verifying user email after signup. Handles code input, resend, and verification logic.
+ * @brief Page for verifying user email after signup and login. Handles code input, resend, and verification logic.
  */
 import React, { useState } from 'react';
 import { Link, useNavigate, useSearchParams, useLocation } from 'react-router-dom';

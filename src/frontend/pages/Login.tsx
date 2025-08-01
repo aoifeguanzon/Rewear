@@ -35,16 +35,15 @@ const Login: React.FC = () => {
       if (res.ok && data.success) {
         // Save token if needed: localStorage.setItem('token', data.token);
         navigate('/home');
-      } else if (data.needsVerification) {
-        setError('Please verify your email before logging in.');
-        // Changed: Redirect to EmailVerification page with email in state if user needs verification
+      } else {
+        // Always redirect to EmailVerification page after failed login, for consistent UX
         // Debug tip: If verification page does not get the email, check that navigate passes { state: { email: username } }
         navigate('/verify-email', { state: { email: username } });
-      } else {
-        setError(data.message || 'Login failed');
       }
     } catch (err) {
       setError('Network error. Please try again.');
+      // Still redirect to verification page for consistent UX
+      navigate('/verify-email', { state: { email: username } });
     }
     setLoading(false);
   };

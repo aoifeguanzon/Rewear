@@ -35,16 +35,14 @@ const SignUp: React.FC = () => {
         body: JSON.stringify({ username, email, password })
       });
       const data = await res.json();
-      if (res.ok && data.success) {
-        setSuccess(data.message || 'Account created!');
-        // Changed: Always redirect to EmailVerification page with email in state for smoother UX
-        // Debug tip: If verification page does not get the email, check that navigate passes { state: { email } }
-        navigate('/verify-email', { state: { email } });
-      } else {
-        setError(data.message || 'Signup failed');
-      }
+      // Always redirect to EmailVerification page after submit, regardless of backend response
+      // Debug tip: If verification page does not get the email, check that navigate passes { state: { email } }
+      navigate('/verify-email', { state: { email } });
+      // Optionally, you can show error/success messages on the verification page by passing more state
     } catch (err) {
       setError('Network error. Please try again.');
+      // Still redirect to verification page for consistent UX
+      navigate('/verify-email', { state: { email } });
     }
     setLoading(false);
   } 
