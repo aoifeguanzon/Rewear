@@ -1,27 +1,58 @@
+/**
+ * @file EmailVerification.tsx
+ * @author Huy Le (huyisme-005)
+ * @brief Page for verifying user email after signup and login. Handles code input, resend, and verification logic.
+ */
 import React, { useState } from 'react';
-import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams, useLocation } from 'react-router-dom';
 import '../App.css';
 
+/**
+ * EmailVerification component
+ * Renders form for user to verify their email using a code sent to their inbox.
+ */
 const EmailVerification: React.FC = () => {
+  // State for verification code input
   const [verificationCode, setVerificationCode] = useState('');
+  // State for email input
   const [email, setEmail] = useState('');
+  // State for loading indicator
   const [isLoading, setIsLoading] = useState(false);
+  // State for success message
   const [message, setMessage] = useState('');
+  // State for error message
   const [error, setError] = useState('');
+  // React Router navigation
   const navigate = useNavigate();
+  // React Router location for reading state (email from SignUp/Login)
+  const location = useLocation();
+  // Search params for extracting email from URL (fallback)
   const [searchParams] = useSearchParams();
 
-  // Get email from URL params if available
+  /**
+   * Effect: Get email from React Router state (preferred) or URL params (fallback)
+   * Debug tip: If email is missing, check that navigate('/verify-email', { state: { email } }) is used in SignUp/Login.
+   */
   React.useEffect(() => {
-    const emailParam = searchParams.get('email');
-    if (emailParam) {
-      setEmail(emailParam);
+    // Try to get email from navigation state (from SignUp/Login)
+    if (location.state && location.state.email) {
+      setEmail(location.state.email);
+    } else {
+      // Fallback: get email from URL param
+      const emailParam = searchParams.get('email');
+      if (emailParam) {
+        setEmail(emailParam);
+      }
     }
-  }, [searchParams]);
+  }, [location.state, searchParams]);
 
+  /**
+   * Handles verification form submission
+   * Sends POST request to backend to verify email with code
+   */
   const handleVerification = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!verificationCode || !email) {
       setError('Please enter both email and verification code');
       return;
@@ -65,6 +96,10 @@ const EmailVerification: React.FC = () => {
     }
   };
 
+  /**
+   * Handles resend code button click
+   * Sends POST request to backend to resend verification code
+   */
   const handleResendCode = async () => {
     if (!email) {
       setError('Please enter your email address');
@@ -98,13 +133,13 @@ const EmailVerification: React.FC = () => {
     }
   };
 
-  return (
-    <div className="centered-page px-4" style={{ position: 'relative' }}>
+return (
+    <div className="centered-page px-4 relative-position">
       {/* Back Arrow */}
       <Link to="/signup" style={{ position: 'absolute', top: 24, left: 24, display: 'flex', alignItems: 'center', textDecoration: 'none' }} aria-label="Back to signup">
         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="19" y1="12" x2="5" y2="12" /><polyline points="12 19 5 12 12 5" /></svg>
       </Link>
-      
+
       <h1 className="text-6xl font-light mb-4">Verify Email</h1>
       <div className="subtitle text-lg mb-8">
         <div>Check your email for the verification code.</div>
@@ -123,7 +158,7 @@ const EmailVerification: React.FC = () => {
         </div>
       )}
 
-      <form className="centered-form" style={{marginTop: 0}} onSubmit={handleVerification}>
+      <form className="centered-form no-margin-top" onSubmit={handleVerification}>
         <input
           type="email"
           placeholder="Email"
@@ -169,4 +204,4 @@ const EmailVerification: React.FC = () => {
   );
 };
 
-export default EmailVerification; 
+export default EmailVerification;

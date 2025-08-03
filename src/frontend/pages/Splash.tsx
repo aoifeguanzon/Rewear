@@ -4,8 +4,8 @@
  * @author Huy Le (huyisme-005)
  */
 import React from 'react';
-import SplashScreen from '../components/SplashScreen/SplashScreen';
+import SplashScreen from '../components/SplashScreen';
 
 const Splash: React.FC = () => <SplashScreen />;
 
-export default Splash; 
+export default Splash;
