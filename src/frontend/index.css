@@ -42,10 +42,15 @@ a{
   background-color: #003201;
   border-radius: 15px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-  transition: background-color 0.3s ease;
+  transition-duration: 0.3s;
   cursor: pointer;
   text-align: center;
   text-decoration: none;
+  border: none;
+}
+
+.big-dark-button:hover{
+  scale: 1.05;
 }
 
 input {

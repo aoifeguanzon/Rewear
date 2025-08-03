@@ -13,9 +13,12 @@ import logo from '../assets/logo.png'
 function Navbar() {
   return (
     <nav className="navbar">
-      <div className ="logo">
-        <img src={logo} alt="Logo" />
-      </div>
+      <div className="logo">
+        <a href="/home">
+          <img src={logo} alt="Logo" />
+        </a>
+    </div>
+
 
       <ul className="nav-links">
         <li><Link to="/">Home</Link></li>
