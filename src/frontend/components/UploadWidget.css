@@ -113,3 +113,15 @@ input[type=range]::-moz-range-thumb {
   cursor: pointer;
 }
 
+.upload-preview {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.upload-image-wrapper {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+  flex-shrink: 0;
+}
