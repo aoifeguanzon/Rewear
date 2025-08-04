@@ -92,8 +92,11 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
   + Huy Le (huyisme-005)
   + Isaac Mulugeta
   + Aoife Guanzon
-- Design: Aura Wilson
-- Social: Galiba Anjum
+  + Galiba Anjum
+- Design:
+   + Aura Wilson
+   + Soumya Khera
+   + Aoife Guanzon
 - Backend:
     + Huy Le
     + Valerie Pena
