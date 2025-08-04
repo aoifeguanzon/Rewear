@@ -38,12 +38,12 @@ const Login: React.FC = () => {
       } else {
         // Always redirect to EmailVerification page after failed login, for consistent UX
         // Debug tip: If verification page does not get the email, check that navigate passes { state: { email: username } }
-        navigate('/verify-email', { state: { email: username } });
+        navigate('/verification', { state: { email: username } });
       }
     } catch (err) {
       setError('Network error. Please try again.');
       // Still redirect to verification page for consistent UX
-      navigate('/verify-email', { state: { email: username } });
+      navigate('/verification', { state: { email: username } });
     }
     setLoading(false);
   };

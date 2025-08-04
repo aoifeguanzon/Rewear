@@ -37,15 +37,15 @@ const SignUp: React.FC = () => {
       const data = await res.json();
       // Always redirect to EmailVerification page after submit, regardless of backend response
       // Debug tip: If verification page does not get the email, check that navigate passes { state: { email } }
-      navigate('/verify-email', { state: { email } });
+      navigate('/verification', { state: { email } });
       // Optionally, you can show error/success messages on the verification page by passing more state
     } catch (err) {
       setError('Network error. Please try again.');
       // Still redirect to verification page for consistent UX
-      navigate('/verify-email', { state: { email } });
+      navigate('/verification', { state: { email } });
     }
     setLoading(false);
-  } 
+  }
 
   return (
     <div className="signup-page">

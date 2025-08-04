@@ -10,6 +10,7 @@ import SplashScreen from './components/SplashScreen';
 import SignUp from './pages/SignUp';
 import Login from './pages/Login';
 import Home from './pages/Home';
+import EmailVerification from './pages/EmailVerification'
 
 const App: React.FC = () => (
   <Router>
@@ -17,6 +18,7 @@ const App: React.FC = () => (
       <Route path="/" element={<SplashScreen />} />
       <Route path="/signup" element={<SignUp />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/verification" element={<EmailVerification/>} />
       <Route path="/home" element={<Home/>} />
     </Routes>
   </Router>

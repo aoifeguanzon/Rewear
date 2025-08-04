@@ -56,3 +56,23 @@ a{
 input {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
+
+.alert {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  font-family: 'Gabarito';
+  font-size: 1rem;
+}
+
+.success-alert {
+  background-color: #d4edda;
+  border: 1px solid #c3e6cb;
+  color: #155724;
+}
+
+.error-alert {
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  color: #721c24;
+}
