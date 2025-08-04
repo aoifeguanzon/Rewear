@@ -1,6 +1,36 @@
+
 # ReWear Backend
 
-A Node.js backend API for the ReWear application with DynamoDB integration, user authentication, and team collaboration features.
+## How the Backend API Works
+
+The ReWear backend API is the engine that powers all user and admin features for the ReWear platform. It is responsible for:
+- **User accounts:** Creating, verifying, and logging in users, as well as managing user data.
+- **Authentication:** Making sure only authorized users can access or change data, using secure tokens and access keys.
+- **Uploads:** Handling image and product link uploads for item search and discovery.
+- **Admin features:** Allowing admins to manage users, permissions, and system settings.
+- **Access control:** Enforcing different roles and permissions for admins, developers, and regular users.
+
+### How to Use the API
+- **HTTP Endpoints:**
+  - The backend exposes a set of URLs (endpoints) you can call using tools like `curl`, Postman, or from your frontend app.
+  - Most endpoints start with `/api/auth` (for user actions) or `/api/admin` (for admin actions).
+- **Authentication Headers:**
+  - Many endpoints require you to include an `x-access-key-id` header with your request. This is your personal or admin access key.
+  - Some actions (like login or signup) may not require a key, but admin and sensitive actions always do.
+- **Request/Response Format:**
+  - All data is sent and received as JSON (Content-Type: application/json).
+  - You’ll get clear error messages and status codes if something goes wrong.
+
+### Where to Find Endpoint Details and Examples
+- **API Endpoints List:** See the [API Endpoints](#api-endpoints) section below for a summary of available routes.
+- **Usage Examples:**
+  - The [Account Management: Common Commands](#account-management-common-commands) section at the end of this README shows real example `curl` commands for signup, login, verification, and admin actions.
+- **Code Reference:**
+  - The `config/` folder contains database, email, and access control setup.
+  - The `middleware/` folder contains authentication and permission checks.
+  - The `routes/` folder contains the actual API endpoints for authentication and admin features.
+
+If you’re building a new feature or integrating with the frontend, start by checking the endpoints in `routes/`, and look at the usage examples in this README.
 
 ## 🚀 Quick Start
 
@@ -220,17 +250,154 @@ npm run list-members
 ## 📡 API Endpoints
 
 ### Authentication Endpoints
-- `POST /api/auth/signup` - Create new user account
-- `POST /api/auth/login` - User login
-- `POST /api/auth/verify-email` - Verify email address
-- `GET /api/auth/me` - Get current user profile
+ `POST /api/auth/signup` - Create new user account
+  **Example Success Response:**
+  ```json
+  {
+    "success": true,
+    "message": "Account created successfully. Please check your email for verification code.",
+    "userId": "abc123-uuid"
+  }
+  ```
+  **Example Error Response:**
+  ```json
+  {
+    "error": "User already exists",
+    "message": "An account with this email already exists"
+  }
+  ```
+ 
+ `POST /api/auth/login` - User login
+  **Example Success Response:**
+  ```json
+  {
+    "success": true,
+    "message": "Login successful",
+    "token": "jwt.token.here",
+    "user": {
+      "userId": "abc123-uuid",
+      "username": "newuser",
+      "email": "newuser@example.com",
+      "isEmailVerified": true
+    }
+  }
+  ```
+  **Example Error Response (needs verification):**
+  ```json
+  {
+    "error": "Email not verified",
+    "message": "Please verify your email address before logging in",
+    "needsVerification": true
+  }
+  ```
+ 
+ `POST /api/auth/verify-email` - Verify email address
+  **Example Success Response:**
+  ```json
+  {
+    "success": true,
+    "message": "Email verified successfully",
+    "token": "jwt.token.here",
+    "user": {
+      "userId": "abc123-uuid",
+      "username": "newuser",
+      "email": "newuser@example.com",
+      "isEmailVerified": true
+    }
+  }
+  ```
+  **Example Error Response:**
+  ```json
+  {
+    "error": "Invalid code",
+    "message": "Invalid verification code"
+  }
+  ```
+ 
+ `GET /api/auth/me` - Get current user profile
+  **Example Success Response:**
+  ```json
+  {
+    "userId": "abc123-uuid",
+    "username": "newuser",
+    "email": "newuser@example.com",
+    "isEmailVerified": true,
+    "createdAt": "2025-08-03T12:00:00.000Z"
+  }
+  ```
 
-### Admin Endpoints
-- `GET /api/admin/users` - List all authorized users
-- `POST /api/admin/users` - Add new authorized user
-- `PUT /api/admin/users/:accessKeyId` - Update user access level
-- `DELETE /api/admin/users/:accessKeyId` - Remove authorized user
-- `GET /api/admin/access-levels` - Get available access levels
+
+ `GET /api/admin/users` - List all authorized users
+  **Example Response:**
+  ```json
+  [
+    {
+      "accessKeyId": "admin-key-123",
+      "name": "Admin User",
+      "email": "admin@rewear.com",
+      "accessLevel": "Admin"
+    },
+    {
+      "accessKeyId": "dev-key-456",
+      "name": "Dev User",
+      "email": "dev@rewear.com",
+      "accessLevel": "Developer"
+    }
+  ]
+  ```
+ 
+ `POST /api/admin/users` - Add new authorized user
+  **Example Success Response:**
+  ```json
+  {
+    "success": true,
+    "message": "User added successfully",
+    "user": {
+      "accessKeyId": "new-key-789",
+      "name": "New User",
+      "email": "new@rewear.com",
+      "accessLevel": "Viewer"
+    }
+  }
+  ```
+ 
+ `PUT /api/admin/users/:accessKeyId` - Update user access level
+  **Example Success Response:**
+  ```json
+  {
+    "success": true,
+    "message": "User access level updated",
+    "user": {
+      "accessKeyId": "dev-key-456",
+      "accessLevel": "Admin"
+    }
+  }
+  ```
+ 
+ `DELETE /api/admin/users/:accessKeyId` - Remove authorized user
+  **Example Success Response:**
+  ```json
+  {
+    "success": true,
+    "message": "User removed successfully"
+  }
+  ```
+ 
+ `GET /api/admin/access-levels` - Get available access levels
+  **Example Response:**
+  ```json
+  ["Admin", "Developer", "Viewer", "Readonly"]
+  ```
+ 
+ `GET /api/admin/system-info` - Get system information
+  **Example Response:**
+  ```json
+  {
+    "uptime": 123456,
+    "usersCount": 42,
+    "dynamoStatus": "OK"
+  }
+  ```
 - `GET /api/admin/system-info` - Get system information
 
 ## 🛠️ Available Scripts
