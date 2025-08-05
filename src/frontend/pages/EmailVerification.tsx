@@ -158,7 +158,8 @@ const EmailVerification: React.FC = () => {
           <b>Resend code</b>
         </p>
 
-        <div>
+        <div
+          style={{display: 'flex', alignSelf: 'center'}}>
           <p className='switch-link'>Already verified?{' '}
             <Link to="/login" className="switch-anchor">Log in</Link>
           </p>
