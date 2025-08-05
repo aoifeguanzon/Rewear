@@ -1,3 +1,9 @@
+/**
+ * @file Home.jsx
+ * @author Aoife Guanzon
+ * @brief Homepage that displays 2 different views; before and after something is searched.
+ */
+
 import React from 'react';
 import Navbar from '../components/Navbar';
 import UploadWidget from '../components/UploadWidget';

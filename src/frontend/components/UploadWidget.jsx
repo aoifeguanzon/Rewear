@@ -1,3 +1,9 @@
+/**
+ * @file UploadWidget.jsx
+ * @author Aoife Guanzon
+ * @brief Component which handles the image upload and product image / link search features.
+ */
+
 import React, { useState } from 'react';
 import './UploadWidget.css';
 import upload from '../assets/upload.png';

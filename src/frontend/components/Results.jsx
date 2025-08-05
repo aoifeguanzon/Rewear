@@ -1,3 +1,9 @@
+/**
+ * @file Results.jsx
+ * @author Aoife Guanzon
+ * @brief Component on the homepage that either displays a placeholder or search results.
+ */
+
 import React from 'react';
 import './Results.css';
 import SearchIcon from '../assets/search-icon.png';
