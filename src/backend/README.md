@@ -458,10 +458,45 @@ This project is designed to work within AWS Free Tier limits:
    - Check IAM user permissions
    - Ensure region is correct
 
+
 4. **Email Service Error**
-   - Verify email credentials
-   - Check Gmail app password setup
-   - Ensure 2FA is enabled for Gmail
+   - Verify all email-related environment variables in your `.env` file:
+     - `EMAIL_HOST`, `EMAIL_PORT`, `EMAIL_USER`, `EMAIL_PASS`, `EMAIL_FROM`
+   - If using Gmail:
+     - Enable 2FA on your Google account
+     - Create an App Password and use it as `EMAIL_PASS`
+     - Make sure `EMAIL_USER` matches the sending account
+   - Check for typos in your email or password
+   - Check server logs for errors like `Error sending verification email:`
+   - If you see `Invalid login` or `Connection refused`, your credentials or SMTP settings are wrong
+   - Test email sending with a simple script:
+     ```js
+     // Save as test-email.js in backend/config/
+     require('dotenv').config({ path: '../.env' });
+     const { sendVerificationEmail } = require('./email');
+     sendVerificationEmail('your@email.com', '123456').then(console.log).catch(console.error);
+     ```
+     Then run: `node src/backend/config/test-email.js`
+   - If you use a different provider (not Gmail), check their SMTP docs for correct host/port/settings
+
+### Email Debugging Tips
+
+- If emails are not received, check your spam folder.
+- Some providers (like Gmail) may block sign-in attempts from new locations/dev servers.
+- If you see `Error: Invalid login`, double-check your app password and 2FA settings.
+- If you see `Error: connect ECONNREFUSED`, your SMTP host/port is likely wrong or blocked by firewall.
+- For more help, see https://nodemailer.com/usage/
+
+### Example .env for Gmail
+```
+EMAIL_HOST=smtp.gmail.com
+EMAIL_PORT=587
+EMAIL_USER=your-email@gmail.com
+EMAIL_PASS=your-app-password
+EMAIL_FROM=noreply@rewear.com
+```
+
+---
 
 ### Getting Help
 1. Check `SETUP_GUIDE.md` for detailed setup instructions

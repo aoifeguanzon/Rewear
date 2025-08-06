@@ -10,8 +10,15 @@ const nodemailer = require('nodemailer');
  * Creates a Nodemailer transporter for sending emails.
  * @returns {import('nodemailer').Transporter}
  */
+/**
+ * Creates a Nodemailer transporter for sending emails.
+ * @returns {import('nodemailer').Transporter}
+ * @see https://nodemailer.com/smtp/ for SMTP config details
+ * @note If emails are not being sent, check your .env variables and see README.md for debugging tips.
+ */
 const createTransporter = () => {
-  return nodemailer.createTransporter({
+  // Use nodemailer.createTransport (not createTransporter)
+  return nodemailer.createTransport({
     host: process.env.EMAIL_HOST,
     port: process.env.EMAIL_PORT,
     secure: false, // true for 465, false for other ports
