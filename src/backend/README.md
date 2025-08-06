@@ -540,12 +540,14 @@ curl -X POST http://localhost:5000/api/auth/signup \
   -d '{"username":"newuser","email":"newuser@example.com","password":"StrongPassword123"}'
 ```
 
-### 2. Resend Verification Code
+
+### 2. Resend Verification Code (Test Email Sending)
 ```sh
 curl -X POST http://localhost:5000/api/auth/resend-verification \
   -H "Content-Type: application/json" \
   -d '{"email":"newuser@example.com"}'
 ```
+If successful, you should receive a verification code email at the specified address. Check your spam folder if you do not see it.
 
 ### 3. Verify Email
 ```sh
@@ -553,6 +555,36 @@ curl -X POST http://localhost:5000/api/auth/verify-email \
   -H "Content-Type: application/json" \
   -d '{"email":"newuser@example.com","code":"123456"}'
 ```
+Replace `123456` with the code you received in your email.
+
+---
+
+## 📧 How to Test Email Verification Feature
+
+1. **Register a new user** (see above for signup command or use the frontend).
+2. **Trigger a verification email** by using the `/api/auth/resend-verification` endpoint (see above for curl command).
+3. **Check your inbox** for the verification code email. If you do not receive it:
+   - Check your spam/junk folder.
+   - Review the troubleshooting tips in the "Email Service Error" section above.
+   - Check backend logs for errors.
+4. **Verify the email** by submitting the code to `/api/auth/verify-email` (see above for curl command).
+5. **Success!** If the code is correct, the API will confirm verification and you can now log in.
+
+### Quick Test Script
+You can also test email sending directly:
+```js
+// Save as test-email.js in src/backend/config/
+require('dotenv').config({ path: '../.env' });
+const { sendVerificationEmail } = require('./email');
+sendVerificationEmail('your@email.com', '123456').then(console.log).catch(console.error);
+```
+Run with:
+```
+node src/backend/config/test-email.js
+```
+If you see a messageId in the output, the email was sent successfully.
+
+---
 
 ### 4. Login
 ```sh
