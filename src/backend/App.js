@@ -91,11 +91,7 @@ const styles = StyleSheet.create({
         padding: 10,
         borderRadius: 8,
         marginBottom: 16,
-        shadowColor: "#000000",
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.4,
-        shadowRadius: 4,
-        elevation: 5,
+        boxShadow: "0px 2px 4px rgba(0,0,0,0.4)",
     },
     buttonText: {
         color: "#FFFFFF",
@@ -105,11 +101,7 @@ const styles = StyleSheet.create({
     imageContainer: {
         borderRadius: 8,
         marginBottom: 16,
-        shadowColor: "#000000",
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.4,
-        shadowRadius: 4,
-        elevation: 5,
+        boxShadow: "0px 2px 4px rgba(0,0,0,0.4)",
     },
     image: {
         width: 200,
