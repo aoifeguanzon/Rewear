@@ -11,8 +11,7 @@ import './Profile.css';
 const MyWardrobes = () => {
   const [image, setImage] = useState<string | null>(null);
   const [link, setLink] = useState('');
-  const [minPrice, setMinPrice] = useState('');
-  const [maxPrice, setMaxPrice] = useState('');
+  const [price, setPrice] = useState('');
 
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -24,7 +23,7 @@ const MyWardrobes = () => {
   return (
     <div>
       <div className="section-header">
-        <h2>My Wardrobes</h2>
+        <h2>My Wardrobe</h2>
       </div>
 
       {/* Upload Box */}
@@ -33,13 +32,12 @@ const MyWardrobes = () => {
           {image ? (
             <img src={image} alt="Uploaded" />
           ) : (
-            <Upload style={{ width: '2rem', height: '2rem', color: '#6b7280' }} />
+            <Upload style={{ width: '50%', height: '100%', color: 'white' }} />
           )}
         </div>
 
         <label className="upload-button" style={{ marginBottom: '1rem' }}>
-          <Upload style={{ width: '1rem', height: '1rem', marginRight: '0.5rem' }} />
-          Upload Image
+          <h1>Upload Image</h1>
           <input
             type="file"
             accept="image/*"
@@ -49,7 +47,7 @@ const MyWardrobes = () => {
         </label>
 
         <div className="link-input">
-          <label htmlFor="item-link">Item Link</label>
+          <label htmlFor="item-link"><h2>Item Link</h2></label>
           <input
             type="url"
             id="item-link"
@@ -59,29 +57,17 @@ const MyWardrobes = () => {
           />
         </div>
 
-        <div className="price-range">
-          <label>Price Range</label>
-          <div className="price-selects">
-            <select value={minPrice} onChange={(e) => setMinPrice(e.target.value)}>
-              <option value="">Min</option>
-              <option value="10">$10</option>
-              <option value="20">$20</option>
-              <option value="50">$50</option>
-            </select>
-            <span>–</span>
-            <select value={maxPrice} onChange={(e) => setMaxPrice(e.target.value)}>
-              <option value="">Max</option>
-              <option value="100">$100</option>
-              <option value="200">$200</option>
-              <option value="500">$500</option>
-            </select>
-          </div>
+        <div className="price-input">
+          <label htmlFor="price"><h2>Price</h2></label>
+          <input
+            type="url"
+            id="price"
+            placeholder="Enter price"
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
+            min="0"
+          />
         </div>
-
-        <button className="search-button">
-          <Search style={{ width: '1rem', height: '1rem', marginRight: '0.5rem' }} />
-          Search
-        </button>
       </div>
 
       {/* Wardrobe Items */}
@@ -90,7 +76,7 @@ const MyWardrobes = () => {
           <h2>My Items</h2>
         </div>
         <div className="card-grid">
-          {Array(6)
+          {Array(5)
             .fill(null)
             .map((_, i) => (
               <div key={i} className="card">

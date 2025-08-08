@@ -51,7 +51,7 @@ const ProfilePage = () => {
 
   const getPageTitle = () => {
     if (location.pathname.includes('/shared-wardrobes')) return 'Shared Wardrobes';
-    if (location.pathname.includes('/my-wardrobes')) return 'My Wardrobes';
+    if (location.pathname.includes('/my-wardrobes')) return 'My Wardrobe';
     return null;
   };
 
@@ -87,7 +87,7 @@ const ProfilePage = () => {
           <div>
             {!isMainProfile && (
               <div className="section-header">
-                <Link to="/profile" style={{ color: '#16a34a', fontSize: '0.875rem', fontWeight: '500' }}>
+                <Link to="/profile" style={{ color: 'black', fontSize: '0.875rem', fontWeight: '500' }}>
                   <ChevronLeft style={{ width: '1rem', height: '1rem', marginRight: '0.25rem' }} />
                   Back to Profile
                 </Link>
@@ -129,7 +129,7 @@ const ProfilePage = () => {
                   <div className="section-header">
                     <h2>Saved Wardrobes</h2>
                     <Link to="/profile/my-wardrobes" style={{ color: 'black', fontSize: '0.875rem', fontWeight: '500' }}>
-                      See all <ChevronRight style={{ width: '1rem', height: '1rem', marginLeft: '0.25rem' }} />
+                        Add to my own wardrobe <ChevronRight style={{ width: '1rem', height: '1rem', marginLeft: '0.25rem' }} />
                     </Link>
                   </div>
                   <p className="card-grid">

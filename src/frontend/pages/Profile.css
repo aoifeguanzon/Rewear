@@ -105,20 +105,20 @@
 /* ====== My Wardrobes Specific ====== */
 .upload-box {
   background-color: #f0fdf4;
-  border: 0.125rem solid #86efac;
   border-radius: 0.5rem;
   padding: 1rem;
 }
 
 .image-preview {
-  background-color: #1f2937;
-  border-radius: 0.5rem;
+  background-color: #003201;
+  border-radius: 5px;
   padding: 0.5rem;
   margin-bottom: 1rem;
   aspect-ratio: 1 / 1;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .image-preview img {
@@ -127,39 +127,39 @@
   object-fit: cover;
 }
 
-.upload-button,
-.search-button {
-  background-color: #16a34a;
+.upload-button {
+  background-color: #003201;
   color: white;
   padding: 0.625rem;
   border: none;
-  border-radius: 0.375rem;
+  border-radius: 15px;
   font-weight: 500;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .upload-button:hover,
 .search-button:hover {
-  background-color: #15803d;
+  background-color: #325C34;
 }
 
 .link-input,
-.price-range {
+.price-input {
   margin-bottom: 1rem;
 }
 
 .link-input label,
-.price-range label {
+.price-input label {
   display: block;
   font-size: 0.875rem;
   margin-bottom: 0.375rem;
 }
 
 .link-input input,
-.price-range select {
+.price-input input {
   width: 100%;
   padding: 0.5rem;
   border: 0.0625rem solid #d1d5db;
