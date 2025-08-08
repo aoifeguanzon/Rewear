@@ -8,7 +8,7 @@ import React from 'react';
 import './Profile.css';
 
 const SharedWardrobes = () => {
-  const wardrobes = Array(6)
+  const wardrobes = Array(10)
     .fill(null)
     .map((_, i) => ({
       id: i,
