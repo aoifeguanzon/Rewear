@@ -5,6 +5,7 @@
  * @description Express middleware for authentication and authorization using JWT.
  */
 const { verifyToken } = require('../utils/auth');
+const { getUserById } = require('../config/database');
 
 /**
  * Middleware to verify JWT token in Authorization header.
@@ -13,7 +14,7 @@ const { verifyToken } = require('../utils/auth');
  * @param {import('express').Response} res
  * @param {import('express').NextFunction} next
  */
-const authenticateToken = (req, res, next) => {
+const authenticateToken = async (req, res, next) => {
   const authHeader = req.headers['authorization'];
   const token = authHeader && authHeader.split(' ')[1]; // Bearer TOKEN
 
@@ -32,8 +33,17 @@ const authenticateToken = (req, res, next) => {
     });
   }
 
-  req.user = decoded;
-  next();
+  // Fetch user from DB and attach to req.user
+  try {
+    const user = await getUserById(decoded.userId);
+    if (!user) {
+      return res.status(401).json({ error: 'User not found', message: 'User does not exist' });
+    }
+    req.user = user;
+    next();
+  } catch (err) {
+    return res.status(500).json({ error: 'Server error', message: 'Failed to fetch user from database' });
+  }
 };
 
 /**

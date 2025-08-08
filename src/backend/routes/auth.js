@@ -386,4 +386,17 @@ router.get('/me', authenticateToken, async (req, res) => {
   }
 });
 
-module.exports = router; 
+/**
+ * @function
+ * @name GET /api/auth/test-auth
+ * @description Test route to verify JWT authentication and DB connection.
+ * @access Protected
+ */
+router.get('/test-auth', authenticateToken, (req, res) => {
+  res.json({
+    message: 'Authenticated and user loaded from DB!',
+    user: req.user
+  });
+});
+
+module.exports = router;
