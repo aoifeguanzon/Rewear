@@ -87,7 +87,7 @@ const ProfilePage = () => {
           <div>
             {!isMainProfile && (
               <div className="section-header">
-                <Link to="/profile" style={{ color: 'black', fontSize: '0.875rem', fontWeight: '500' }}>
+                <Link to="/profile" style={{ color: 'black', fontSize: '1em', fontWeight: '500' }}>
                   <ChevronLeft style={{ width: '1rem', height: '1rem', marginRight: '0.25rem' }} />
                   Back to Profile
                 </Link>
