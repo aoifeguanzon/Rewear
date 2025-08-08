@@ -22,7 +22,7 @@ const App: React.FC = () => (
       <Route path="/signup" element={<SignUp />} />
       <Route path="/login" element={<Login />} />
       <Route path="/verification" element={<EmailVerification/>} />
-      <Route path="/home" element={<Home/>} />
+      <Route path="/home" element={<Home />} />
       <Route path="/profile" element={<Profile />}>
           <Route path="my-wardrobes" element={<MyWardrobes />} />
           <Route path="shared-wardrobes" element={<SharedWardrobes />} />
