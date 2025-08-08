@@ -328,7 +328,35 @@ This project is designed to work within AWS Free Tier limits:
 
 ## Account Management: Common Commands
 
+### 🧪 API Testing Tips for PowerShell Users
+
+If you are using PowerShell, use `Invoke-RestMethod` or `Invoke-WebRequest` for API testing instead of bash-style curl commands. Example for user signup:
+
+```powershell
+Invoke-RestMethod -Uri "http://localhost:5000/api/auth/signup" `
+  -Method POST `
+  -Headers @{ "Content-Type" = "application/json" } `
+  -Body '{"username":"testuser","email":"testuser@example.com","password":"StrongPassword123"}'
+```
+
+For login:
+
+```powershell
+Invoke-RestMethod -Uri "http://localhost:5000/api/auth/login" `
+  -Method POST `
+  -Headers @{ "Content-Type" = "application/json" } `
+  -Body '{"email":"testuser@example.com","password":"StrongPassword123"}'
+```
+
+**Note:**
+- The `-Headers` parameter must be a hashtable: `@{ "Header" = "Value" }`
+- Use backticks (\`) for line continuation in PowerShell.
+- The response will be parsed as an object. To see raw JSON, use `Invoke-WebRequest` and access the `.Content` property.
+
+---
+
 Below are example commands for managing user accounts and admin setup via the API. Replace values in <> as needed.
+
 
 ### 1. Register (Sign Up)
 ```sh
@@ -337,6 +365,22 @@ curl -X POST http://localhost:5000/api/auth/signup \
   -H "x-access-key-id: <your-admin-access-key>" \
   -d '{"username":"newuser","email":"newuser@example.com","password":"StrongPassword123"}'
 ```
+**Example Success Response:**
+```json
+{
+  "success": true,
+  "message": "Account created successfully. Please check your email for verification code.",
+  "userId": "abc123-uuid"
+}
+```
+**Example Error Response:**
+```json
+{
+  "error": "User already exists",
+  "message": "An account with this email already exists"
+}
+```
+
 
 ### 2. Resend Verification Code
 ```sh
@@ -344,6 +388,21 @@ curl -X POST http://localhost:5000/api/auth/resend-verification \
   -H "Content-Type: application/json" \
   -d '{"email":"newuser@example.com"}'
 ```
+**Example Success Response:**
+```json
+{
+  "success": true,
+  "message": "Verification email sent successfully"
+}
+```
+**Example Error Response:**
+```json
+{
+  "error": "User not found",
+  "message": "No account found with this email address"
+}
+```
+
 
 ### 3. Verify Email
 ```sh
@@ -351,12 +410,56 @@ curl -X POST http://localhost:5000/api/auth/verify-email \
   -H "Content-Type: application/json" \
   -d '{"email":"newuser@example.com","code":"123456"}'
 ```
+**Example Success Response:**
+```json
+{
+  "success": true,
+  "message": "Email verified successfully",
+  "token": "jwt.token.here",
+  "user": {
+    "userId": "abc123-uuid",
+    "username": "newuser",
+    "email": "newuser@example.com",
+    "isEmailVerified": true
+  }
+}
+```
+**Example Error Response:**
+```json
+{
+  "error": "Invalid code",
+  "message": "Invalid verification code"
+}
+```
+
 
 ### 4. Login
 ```sh
 curl -X POST http://localhost:5000/api/auth/login \
   -H "Content-Type: application/json" \
   -d '{"email":"newuser@example.com","password":"StrongPassword123"}'
+```
+**Example Success Response:**
+```json
+{
+  "success": true,
+  "message": "Login successful",
+  "token": "jwt.token.here",
+  "user": {
+    "userId": "abc123-uuid",
+    "username": "newuser",
+    "email": "newuser@example.com",
+    "isEmailVerified": true
+  }
+}
+```
+**Example Error Response (needs verification):**
+```json
+{
+  "error": "Email not verified",
+  "message": "Please verify your email address before logging in",
+  "needsVerification": true
+}
 ```
 
 ### 5. Admin Setup Notes
