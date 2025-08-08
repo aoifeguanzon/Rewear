@@ -14,18 +14,18 @@ const ProfilePage = () => {
   const location = useLocation();
   const isMainProfile = location.pathname === '/profile' || location.pathname === '/profile/';
 
-  const friends = Array(5).fill(null).map((_, i) => ({
+  const friends = Array(8).fill(null).map((_, i) => ({
     id: i,
     username: 'Username'
   }));
 
-  const sharedWardrobes = Array(3).fill(null).map((_, i) => ({
+  const sharedWardrobes = Array(5).fill(null).map((_, i) => ({
     id: i,
     username: 'Username',
     items: 8
   }));
 
-  const savedWardrobes = Array(3).fill(null).map((_, i) => ({
+  const savedWardrobes = Array(5).fill(null).map((_, i) => ({
     id: i,
     username: 'Username',
     items: 8
@@ -61,8 +61,8 @@ const ProfilePage = () => {
       <div className="profile-container">
         <div className="profile-grid">
           <div className="profile-sidebar">
-            <div className="profile-card" style={{ textAlign: 'center' }}>
-              <div className="profile-avatar">Profile Pic</div>
+            <div className="profile-card" style={{ textAlign: 'center'}}>
+              <p className="profile-avatar">Profile Pic</p>
               <h2 style={{ fontSize: '1.25rem', fontWeight: '600' }}>Username</h2>
               <p style={{ fontSize: '0.875rem', color: '#4b5563' }}>
                 This is my bio. I've written some words here. Not a lot though.
@@ -70,15 +70,15 @@ const ProfilePage = () => {
             </div>
 
             <div>
-              <h3 style={{ fontSize: '1rem', fontWeight: '600', marginBottom: '1rem', textDecoration: 'underline' }}>
+              <h2>
                 My Wardrobe
-              </h3>
+              </h2>
               <div className="profile-card">
                 <div className="card-image">
                   <div style={{ width: '4rem', height: '4rem', border: '0.25rem solid #d1d5db', transform: 'rotate(45deg)' }}></div>
                 </div>
                 <div style={{ textAlign: 'center' }}>
-                  <span style={{ fontSize: '1rem', fontWeight: '500' }}>25 items</span>
+                  <p>25 items</p>
                 </div>
               </div>
             </div>
@@ -100,43 +100,43 @@ const ProfilePage = () => {
                 <div>
                   <div className="section-header">
                     <h2>Friends (20)</h2>
-                    <button style={{ color: '#16a34a', fontSize: '0.875rem', fontWeight: '500' }}>
+                    <button style={{ color: 'white', backgroundColor: 'transparent', border: 'none', textDecoration: 'underline', fontSize: '0.875rem', fontWeight: '500' }}>
                       See all <ChevronRight style={{ width: '1rem', height: '1rem', marginLeft: '0.25rem' }} />
                     </button>
                   </div>
-                  <div style={{ display: 'flex', gap: '1.5rem', overflowX: 'auto', paddingBottom: '0.5rem' }}>
+                  <p style={{ display: 'flex', gap: '1.5rem', overflowX: 'auto', paddingBottom: '0.5rem' }}>
                     {friends.map((friend, i) => (
                       <FriendAvatar key={i} username={friend.username} />
                     ))}
-                  </div>
+                  </p>
                 </div>
 
                 <div>
                   <div className="section-header">
                     <h2>Shared Wardrobes</h2>
-                    <Link to="/profile/shared-wardrobes" style={{ color: '#16a34a', fontSize: '0.875rem', fontWeight: '500' }}>
+                    <Link to="/profile/shared-wardrobes" style={{ color: 'white', fontSize: '0.875rem', fontWeight: '500' }}>
                       See all <ChevronRight style={{ width: '1rem', height: '1rem', marginLeft: '0.25rem' }} />
                     </Link>
                   </div>
-                  <div className="card-grid">
+                  <p className="card-grid">
                     {sharedWardrobes.map((w, i) => (
                       <WardrobeCard key={i} {...w} />
                     ))}
-                  </div>
+                  </p>
                 </div>
 
                 <div>
                   <div className="section-header">
                     <h2>Saved Wardrobes</h2>
-                    <Link to="/profile/my-wardrobes" style={{ color: '#16a34a', fontSize: '0.875rem', fontWeight: '500' }}>
+                    <Link to="/profile/my-wardrobes" style={{ color: 'white', fontSize: '0.875rem', fontWeight: '500' }}>
                       See all <ChevronRight style={{ width: '1rem', height: '1rem', marginLeft: '0.25rem' }} />
                     </Link>
                   </div>
-                  <div className="card-grid">
+                  <p className="card-grid">
                     {savedWardrobes.map((w, i) => (
                       <WardrobeCard key={i} {...w} isPrivate />
                     ))}
-                  </div>
+                  </p>
                 </div>
               </>
             ) : (
