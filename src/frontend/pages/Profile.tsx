@@ -45,7 +45,7 @@ const ProfilePage = () => {
   const FriendAvatar = ({ username }) => (
     <div style={{ textAlign: 'center' }}>
       <div className="profile-avatar"></div>
-      <span style={{ fontSize: '0.75rem', color: '#4b5563' }}>{username}</span>
+      <p>{username}</p>
     </div>
   );
 
@@ -100,7 +100,7 @@ const ProfilePage = () => {
                 <div>
                   <div className="section-header">
                     <h2>Friends (20)</h2>
-                    <button style={{ color: 'white', backgroundColor: 'transparent', border: 'none', textDecoration: 'underline', fontSize: '0.875rem', fontWeight: '500' }}>
+                    <button style={{ color: 'black', backgroundColor: 'transparent', border: 'none', textDecoration: 'underline', fontSize: '0.875rem', fontWeight: '500' }}>
                       See all <ChevronRight style={{ width: '1rem', height: '1rem', marginLeft: '0.25rem' }} />
                     </button>
                   </div>
@@ -114,7 +114,7 @@ const ProfilePage = () => {
                 <div>
                   <div className="section-header">
                     <h2>Shared Wardrobes</h2>
-                    <Link to="/profile/shared-wardrobes" style={{ color: 'white', fontSize: '0.875rem', fontWeight: '500' }}>
+                    <Link to="/profile/shared-wardrobes" style={{ color: 'black', fontSize: '0.875rem', fontWeight: '500' }}>
                       See all <ChevronRight style={{ width: '1rem', height: '1rem', marginLeft: '0.25rem' }} />
                     </Link>
                   </div>
@@ -128,7 +128,7 @@ const ProfilePage = () => {
                 <div>
                   <div className="section-header">
                     <h2>Saved Wardrobes</h2>
-                    <Link to="/profile/my-wardrobes" style={{ color: 'white', fontSize: '0.875rem', fontWeight: '500' }}>
+                    <Link to="/profile/my-wardrobes" style={{ color: 'black', fontSize: '0.875rem', fontWeight: '500' }}>
                       See all <ChevronRight style={{ width: '1rem', height: '1rem', marginLeft: '0.25rem' }} />
                     </Link>
                   </div>
