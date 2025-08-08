@@ -81,8 +81,8 @@ const MyWardrobes = () => {
             .map((_, i) => (
               <div key={i} className="card">
                 <div className="card-image"></div>
-                <div className="card-title">Item {i + 1}</div>
-                <div className="card-subtitle">$XX.XX</div>
+                <p className="card-title">Item {i + 1}</p>
+                <p className="card-subtitle">$XX.XX</p>
               </div>
             ))}
         </div>

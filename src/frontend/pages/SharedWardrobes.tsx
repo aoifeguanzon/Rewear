@@ -35,8 +35,8 @@ const SharedWardrobes = () => {
             <div className="card-image">
               <div style={{ width: '2rem', height: '2rem', border: '0.125rem solid #d1d5db', transform: 'rotate(45deg)' }}></div>
             </div>
-            <div className="card-title">{w.username}</div>
-            <div className="card-subtitle">{w.items} items</div>
+            <p className="card-title">{w.username}</p>
+            <p className="card-subtitle">{w.items} items</p>
           </div>
         ))}
       </div>
