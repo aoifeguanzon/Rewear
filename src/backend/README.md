@@ -359,6 +359,18 @@ Below are example commands for managing user accounts and admin setup via the AP
 
 
 ### 1. Register (Sign Up)
+
+**What this does:**
+Creates a new user account in the backend and sends a verification code to the provided email address.
+
+**Command breakdown:**
+- `curl -X POST http://localhost:5000/api/auth/signup`: Sends a POST request to the signup endpoint.
+- `-H "Content-Type: application/json"`: Tells the server the request body is in JSON format.
+- `-H "x-access-key-id: <your-admin-access-key>"`: (If required) Supplies an admin access key for protected endpoints.
+- `-d '{...}'`: The data to send (username, email, password) in JSON format.
+
+**Why this syntax:**
+The backend expects JSON data and may require an access key for security. The POST method is used to create new resources (users).
 ```sh
 curl -X POST http://localhost:5000/api/auth/signup \
   -H "Content-Type: application/json" \
@@ -383,6 +395,17 @@ curl -X POST http://localhost:5000/api/auth/signup \
 
 
 ### 2. Resend Verification Code
+
+**What this does:**
+Requests the backend to resend the email verification code to the specified email address.
+
+**Command breakdown:**
+- `curl -X POST http://localhost:5000/api/auth/resend-verification`: Sends a POST request to the resend endpoint.
+- `-H "Content-Type: application/json"`: Specifies JSON format for the request body.
+- `-d '{...}'`: The data to send (email) in JSON format.
+
+**Why this syntax:**
+The backend needs to know which email to send the code to, and expects the data as JSON in a POST request.
 ```sh
 curl -X POST http://localhost:5000/api/auth/resend-verification \
   -H "Content-Type: application/json" \
@@ -405,6 +428,17 @@ curl -X POST http://localhost:5000/api/auth/resend-verification \
 
 
 ### 3. Verify Email
+
+**What this does:**
+Submits the verification code received by email to confirm the user's email address.
+
+**Command breakdown:**
+- `curl -X POST http://localhost:5000/api/auth/verify-email`: Sends a POST request to the verify endpoint.
+- `-H "Content-Type: application/json"`: Specifies JSON format for the request body.
+- `-d '{...}'`: The data to send (email and code) in JSON format.
+
+**Why this syntax:**
+The backend checks the code for the given email and marks the user as verified if correct. POST is used because this changes user state.
 ```sh
 curl -X POST http://localhost:5000/api/auth/verify-email \
   -H "Content-Type: application/json" \
@@ -434,6 +468,17 @@ curl -X POST http://localhost:5000/api/auth/verify-email \
 
 
 ### 4. Login
+
+**What this does:**
+Authenticates a user with email and password, returning a JWT token if successful.
+
+**Command breakdown:**
+- `curl -X POST http://localhost:5000/api/auth/login`: Sends a POST request to the login endpoint.
+- `-H "Content-Type: application/json"`: Specifies JSON format for the request body.
+- `-d '{...}'`: The data to send (email and password) in JSON format.
+
+**Why this syntax:**
+The backend expects login credentials as JSON. POST is used because login is an action that may return a token and user info.
 ```sh
 curl -X POST http://localhost:5000/api/auth/login \
   -H "Content-Type: application/json" \
