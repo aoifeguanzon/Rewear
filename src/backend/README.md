@@ -357,6 +357,7 @@ Invoke-RestMethod -Uri "http://localhost:5000/api/auth/login" `
 
 Below are example commands for managing user accounts and admin setup via the API. Replace values in <> as needed.
 
+---
 
 ### 1. Register (Sign Up)
 
@@ -371,12 +372,14 @@ Creates a new user account in the backend and sends a verification code to the p
 
 **Why this syntax:**
 The backend expects JSON data and may require an access key for security. The POST method is used to create new resources (users).
+
 ```sh
 curl -X POST http://localhost:5000/api/auth/signup \
   -H "Content-Type: application/json" \
   -H "x-access-key-id: <your-admin-access-key>" \
   -d '{"username":"newuser","email":"newuser@example.com","password":"StrongPassword123"}'
 ```
+
 **Example Success Response:**
 ```json
 {
@@ -393,6 +396,14 @@ curl -X POST http://localhost:5000/api/auth/signup \
 }
 ```
 
+**Debugging Tips:**
+- If you get a "User already exists" error, try a different email address.
+- Ensure the backend server is running and accessible at the specified URL.
+- Double-check the JSON syntax and required fields.
+- If you receive a 401/403 error, verify the `x-access-key-id` header (if required).
+- Check server logs for more detailed error messages.
+
+---
 
 ### 2. Resend Verification Code
 
@@ -406,6 +417,7 @@ Requests the backend to resend the email verification code to the specified emai
 
 **Why this syntax:**
 The backend needs to know which email to send the code to, and expects the data as JSON in a POST request.
+
 ```sh
 curl -X POST http://localhost:5000/api/auth/resend-verification \
   -H "Content-Type: application/json" \
@@ -426,6 +438,13 @@ curl -X POST http://localhost:5000/api/auth/resend-verification \
 }
 ```
 
+**Debugging Tips:**
+- If you get "User not found," make sure the email is registered.
+- Check your spam/junk folder for the verification email.
+- Ensure your email service credentials are correct in `.env`.
+- Review server logs for email sending errors.
+
+---
 
 ### 3. Verify Email
 
@@ -439,6 +458,7 @@ Submits the verification code received by email to confirm the user's email addr
 
 **Why this syntax:**
 The backend checks the code for the given email and marks the user as verified if correct. POST is used because this changes user state.
+
 ```sh
 curl -X POST http://localhost:5000/api/auth/verify-email \
   -H "Content-Type: application/json" \
@@ -466,6 +486,14 @@ curl -X POST http://localhost:5000/api/auth/verify-email \
 }
 ```
 
+**Debugging Tips:**
+- If you get "Invalid code," ensure you are using the latest code sent to your email.
+- Verification codes may expire; request a new one if needed.
+- Double-check the email address matches the one used for signup.
+- Look for typos in the code or email.
+- Check server logs for verification errors.
+
+---
 
 ### 4. Login
 
@@ -479,6 +507,7 @@ Authenticates a user with email and password, returning a JWT token if successfu
 
 **Why this syntax:**
 The backend expects login credentials as JSON. POST is used because login is an action that may return a token and user info.
+
 ```sh
 curl -X POST http://localhost:5000/api/auth/login \
   -H "Content-Type: application/json" \
@@ -505,6 +534,16 @@ curl -X POST http://localhost:5000/api/auth/login \
   "message": "Please verify your email address before logging in",
   "needsVerification": true
 }
+```
+
+**Debugging Tips:**
+- If you get "Email not verified," complete the email verification process first.
+- For "Invalid credentials," check your email and password for typos.
+- Ensure the backend server is running and accessible.
+- If login fails repeatedly, try resetting your password.
+- Review server logs for authentication errors.
+
+---
 ```
 
 ### 5. Admin Setup Notes
