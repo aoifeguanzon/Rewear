@@ -1,6 +1,7 @@
+
 .social-root {
   min-height: 100vh;
-  background: #eaeaea;
+  background: #7d9c7b;
 }
 
 .social-navbar {
@@ -39,24 +40,27 @@
   border-bottom: 2px solid #222;
 }
 
+
 .social-main {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  background: #7d9c7b;
-  padding: 32px 0;
+  background: transparent;
+  padding: 48px 0 0 0;
   min-height: 90vh;
+  gap: 48px;
 }
 
+
 .social-column {
-  background: #7d9c7b;
+  background: #fff;
   padding: 32px 24px;
-  border-radius: 12px;
+  border-radius: 16px;
   min-width: 340px;
   max-width: 400px;
   flex: 1 1 0;
   margin: 0 16px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.10);
 }
 
 .social-section-header {
