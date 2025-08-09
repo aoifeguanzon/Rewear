@@ -1,3 +1,8 @@
+/**
+ * @file Social.tsx
+ * @brief The social page.
+ * @author Huy Le (huyisme-005)
+ */
 import React from 'react';
 import logo from '../assets/logo.png';
 import '../pages/Social.css';
