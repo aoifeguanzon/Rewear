@@ -1,3 +1,83 @@
+/* SETTINGS PAGE STYLES */
+.settings-main-outer {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: calc(100vh - 80px);
+  padding-top: 40px;
+}
+
+.settings-main-inner {
+  display: flex;
+  background: white;
+  border-radius: 24px;
+  box-shadow: 0 4px 32px 0 rgba(0,0,0,0.10);
+  overflow: hidden;
+  min-width: 800px;
+  max-width: 1100px;
+  width: 100%;
+  min-height: 350px;
+  gap: 32px;
+  padding: 32px 24px;
+}
+
+.settings-col {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: white;
+  min-width: 0;
+}
+
+.settings-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #f3f3f3;
+  border: 2.5px solid #bbb;
+  margin-bottom: 12px;
+}
+
+.settings-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+  width: 100%;
+  max-width: 260px;
+}
+
+.settings-input {
+  margin-bottom: 8px;
+  padding: 6px 10px;
+  border: 1.5px solid #222;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.settings-delete-btn {
+  margin-top: 10px;
+  padding: 8px 0;
+  background: #fff;
+  border: 1.5px solid #d32f2f;
+  color: #d32f2f;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.settings-delete-btn:hover {
+  background: #ffeaea;
+}
+
+.settings-margin-top {
+  margin-top: 0.5rem;
+}
+.settings-margin-top-bottom {
+  margin-top: 0.5rem;
+  margin-bottom: 0.25rem;
+}
 
 /*
 @file Social.css
