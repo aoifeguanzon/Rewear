@@ -65,6 +65,7 @@
 
 .social-logo-container {
   flex: 0 0 auto;
+  cursor: pointer;
 }
 
 .social-logo {

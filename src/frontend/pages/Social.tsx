@@ -4,22 +4,24 @@
  * @author Huy Le (huyisme-005)
  */
 import React from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
 import logo from '../assets/logo.png';
 import '../pages/Social.css';
 
 const Social: React.FC = () => {
+  const navigate = useNavigate();
   return (
     <div className="social-root">
       {/* Top Navigation Bar */}
       <div className="social-navbar">
-        <div className="social-logo-container">
+        <div className="social-logo-container" style={{ cursor: 'pointer' }} onClick={() => navigate('/home')}>
           <img src={logo} alt="Logo" className="social-logo" />
         </div>
         <div className="social-nav-links">
-          <a href="#">Home</a>
-          <a href="#">Profile</a>
-          <a href="#" className="active">Social</a>
-          <a href="#">Settings</a>
+          <NavLink to="/home" className={({ isActive }) => isActive ? 'active' : ''}>Home</NavLink>
+          <NavLink to="/profile" className={({ isActive }) => isActive ? 'active' : ''}>Profile</NavLink>
+          <NavLink to="/Social" className={({ isActive }) => isActive ? 'active' : ''}>Social</NavLink>
+          <NavLink to="/Settings" className={({ isActive }) => isActive ? 'active' : ''}>Settings</NavLink>
         </div>
       </div>
       {/* Main Content */}

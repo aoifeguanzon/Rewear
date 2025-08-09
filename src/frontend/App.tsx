@@ -16,6 +16,7 @@ import Profile from './pages/Profile';
 import MyWardrobes from './pages/MyWardrobes';
 import SharedWardrobes from './pages/SharedWardrobes';
 import Social from './pages/Social';
+import Settings from './pages/Settings';
 
 const App: React.FC = () => (
   <Router>
@@ -29,7 +30,8 @@ const App: React.FC = () => (
           <Route path="my-wardrobes" element={<MyWardrobes />} />
           <Route path="shared-wardrobes" element={<SharedWardrobes />} />
         </Route>
-      <Route path="/Social" element={<Social />} />
+  <Route path="/Social" element={<Social />} />
+  <Route path="/Settings" element={<Settings />} />
     </Routes>
   </Router>
 );
