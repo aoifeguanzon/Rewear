@@ -18,62 +18,66 @@ const Social: React.FC = () => {
         </div>
       </div>
       {/* Main Content */}
-      <div className="social-main">
-        {/* Friends Column */}
-        <div className="social-column social-friends">
-          <div className="social-section-header">
-            <span>Your friends</span>
-            <input type="text" placeholder="Search for a friend" className="social-search" />
+      <div className="social-main-outer">
+        <div className="social-main-inner">
+          {/* Friends Column */}
+          <div className="social-column social-friends">
+            <div className="social-section-header">
+              <span className="social-section-title">Your friends</span>
+              <input type="text" placeholder="Search for a friend" className="social-search" />
+            </div>
+            <div className="social-friend-list">
+              {[1,2,3,4].map((_, i) => (
+                <div className="social-friend-item" key={i}>
+                  <div className="social-avatar" />
+                  <span className="social-username">Username</span>
+                </div>
+              ))}
+            </div>
           </div>
-          <div className="social-friend-list">
-            {[1,2,3,4].map((_, i) => (
-              <div className="social-friend-item" key={i}>
+          {/* Vertical Divider */}
+          <div className="social-divider" />
+          {/* Chats Column */}
+          <div className="social-column social-chats">
+            <div className="social-section-header">
+              <span className="social-section-title">Chats</span>
+              <input type="text" placeholder="Find conversation" className="social-search" />
+            </div>
+            <div className="social-chat-list">
+              <div className="social-chat-item">
                 <div className="social-avatar" />
-                <span>Username</span>
+                <div>
+                  <span className="social-username">Username</span><br />
+                  <span className="social-chat-label bold">Received message</span>
+                </div>
               </div>
-            ))}
-          </div>
-        </div>
-        {/* Chats Column */}
-        <div className="social-column social-chats">
-          <div className="social-section-header">
-            <span>Chats</span>
-            <input type="text" placeholder="Find conversation" className="social-search" />
-          </div>
-          <div className="social-chat-list">
-            <div className="social-chat-item">
-              <div className="social-avatar" />
-              <div>
-                <span>Username</span><br />
-                <span className="social-chat-label bold">Received message</span>
+              <div className="social-chat-item">
+                <div className="social-avatar" />
+                <div>
+                  <span className="social-username">Username</span><br />
+                  <span className="social-chat-label">Sent message</span>
+                </div>
               </div>
-            </div>
-            <div className="social-chat-item">
-              <div className="social-avatar" />
-              <div>
-                <span>Username</span><br />
-                <span className="social-chat-label">Sent message</span>
+              <div className="social-chat-item">
+                <div className="social-avatar" />
+                <div>
+                  <span className="social-username">Username</span><br />
+                  <span className="social-chat-label">Sent message</span>
+                </div>
               </div>
-            </div>
-            <div className="social-chat-item">
-              <div className="social-avatar" />
-              <div>
-                <span>Username</span><br />
-                <span className="social-chat-label">Sent message</span>
+              <div className="social-chat-item">
+                <div className="social-avatar" />
+                <div>
+                  <span className="social-username">Username</span><br />
+                  <span className="social-chat-label bold">Received message</span>
+                </div>
               </div>
-            </div>
-            <div className="social-chat-item">
-              <div className="social-avatar" />
-              <div>
-                <span>Username</span><br />
-                <span className="social-chat-label bold">Received message</span>
-              </div>
-            </div>
-            <div className="social-chat-item">
-              <div className="social-avatar" />
-              <div>
-                <span>Username</span><br />
-                <span className="social-chat-label">Unopened message</span>
+              <div className="social-chat-item">
+                <div className="social-avatar" />
+                <div>
+                  <span className="social-username">Username</span><br />
+                  <span className="social-chat-label">Unopened message</span>
+                </div>
               </div>
             </div>
           </div>
