@@ -11,9 +11,11 @@ import SignUp from './pages/SignUp';
 import Login from './pages/Login';
 import Home from './pages/Home';
 import EmailVerification from './pages/EmailVerification'
+
 import Profile from './pages/Profile';
 import MyWardrobes from './pages/MyWardrobes';
 import SharedWardrobes from './pages/SharedWardrobes';
+import Social from './pages/Social';
 
 const App: React.FC = () => (
   <Router>
@@ -27,6 +29,7 @@ const App: React.FC = () => (
           <Route path="my-wardrobes" element={<MyWardrobes />} />
           <Route path="shared-wardrobes" element={<SharedWardrobes />} />
         </Route>
+      <Route path="/Social" element={<Social />} />
     </Routes>
   </Router>
 );
