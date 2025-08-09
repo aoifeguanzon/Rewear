@@ -1,0 +1,107 @@
+.social-root {
+  min-height: 100vh;
+  background: #eaeaea;
+}
+
+.social-navbar {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  padding: 12px 24px;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.social-logo-container {
+  flex: 0 0 auto;
+}
+
+.social-logo {
+  height: 40px;
+  width: auto;
+}
+
+.social-nav-links {
+  margin-left: auto;
+  display: flex;
+  gap: 32px;
+}
+
+.social-nav-links a {
+  color: #222;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding: 0 8px;
+}
+
+.social-nav-links a.active {
+  font-weight: bold;
+  border-bottom: 2px solid #222;
+}
+
+.social-main {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background: #7d9c7b;
+  padding: 32px 0;
+  min-height: 90vh;
+}
+
+.social-column {
+  background: #7d9c7b;
+  padding: 32px 24px;
+  border-radius: 12px;
+  min-width: 340px;
+  max-width: 400px;
+  flex: 1 1 0;
+  margin: 0 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.social-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.social-search {
+  padding: 6px 10px;
+  border: 1.5px solid #222;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.social-friend-list, .social-chat-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.social-friend-item, .social-chat-item {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.social-avatar {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: #f3f3f3;
+  border: 2.5px solid #bbb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-chat-label {
+  font-size: 0.98rem;
+  color: #444;
+}
+
+.social-chat-label.bold {
+  font-weight: bold;
+  color: #222;
+}
