@@ -11,7 +11,8 @@ FROM node:18 AS backend
 WORKDIR /app/backend
 COPY src/backend/package*.json ./
 RUN npm install
-COPY src/backend/ .
+COPY src/backend/ . 
+# The COPY src/backend/ . must come after npm install, but before build/run
 # Copy built frontend to backend's public directory (adjust if needed)
 COPY --from=frontend /app/frontend/dist ./public
 
