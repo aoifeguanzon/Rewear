@@ -15,8 +15,16 @@ COPY src/backend/ .
 # Copy built frontend to backend's public directory (adjust if needed)
 COPY --from=frontend /app/frontend/dist ./public
 
+# Set environment variables for production
+ENV NODE_ENV=production
+ENV PORT=3000
+
 # Expose backend port
 EXPOSE 3000
+
+# Healthcheck for container orchestration
+HEALTHCHECK --interval=30s --timeout=10s --start-period=10s --retries=3 \
+  CMD curl -f http://localhost:3000/health || exit 1
 
 # Start backend server
 CMD ["node", "server.js"]
