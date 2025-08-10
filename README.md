@@ -50,11 +50,14 @@ docker run -p 3000:3000 rewear-app
 
 This will start the backend server on port 3000 and serve the built frontend as static files.
 
-If any error happens, try this:
+If any error happens when you do docker run, try this (only do
+this when an error appears with docker run):
 - Deleting any old Docker images/containers with:
 docker system prune -af
 - Then, you rebuild the image:
 docker build --no-cache -t rewear-app .
+This ensures a clean build from scratch to trouble shoot
+problems where cache might cause problems.
 
 #### 3. Configuration
 - Make sure your `.env` file is present in `src/backend/` before building the image, or mount it at runtime using `-v`:
