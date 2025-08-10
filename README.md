@@ -31,6 +31,40 @@ A sustainable fashion platform for discovering, sharing, and reusing clothing it
 3. Set up environment variables as needed (see `.env.example` in backend).
 
 ## Usage
+
+### 🚢 Docker Deployment (Recommended)
+You can deploy the entire ReWear app (frontend and backend) anywhere using Docker. This ensures consistent builds and easy deployment on any platform that supports Docker.
+
+#### 1. Build the Docker image
+In the project root (where the Dockerfile is located), run:
+
+```sh
+docker build -t rewear-app .
+```
+
+#### 2. Run the Docker container
+
+```sh
+docker run -p 3000:3000 rewear-app
+```
+
+This will start the backend server on port 3000 and serve the built frontend as static files.
+
+If any error happens when you do docker run, try this (only do
+this when an error appears with docker run):
+- Deleting any old Docker images/containers with:
+docker system prune -af
+- Then, you rebuild the image:
+docker build --no-cache -t rewear-app .
+This ensures a clean build from scratch to trouble shoot
+problems where cache might cause problems.
+
+#### 3. Configuration
+- Make sure your `.env` file is present in `src/backend/` before building the image, or mount it at runtime using `-v`:
+   ```sh
+   docker run -p 3000:3000 -v $(pwd)/src/backend/.env:/app/backend/.env rewear-app
+   ```
+- Adjust ports as needed for your deployment environment.
 ### Start the Frontend
 ```sh
 cd src/frontend

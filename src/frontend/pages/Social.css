@@ -1,0 +1,243 @@
+/* SETTINGS PAGE STYLES */
+.settings-main-outer {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: calc(100vh - 80px);
+  padding-top: 40px;
+}
+
+.settings-main-inner {
+  display: flex;
+  background: white;
+  border-radius: 24px;
+  box-shadow: 0 4px 32px 0 rgba(0,0,0,0.10);
+  overflow: hidden;
+  min-width: 800px;
+  max-width: 1100px;
+  width: 100%;
+  min-height: 350px;
+  gap: 32px;
+  padding: 32px 24px;
+}
+
+.settings-col {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: white;
+  min-width: 0;
+}
+
+.settings-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #f3f3f3;
+  border: 2.5px solid #bbb;
+  margin-bottom: 12px;
+}
+
+.settings-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+  width: 100%;
+  max-width: 260px;
+}
+
+.settings-input {
+  margin-bottom: 8px;
+  padding: 6px 10px;
+  border: 1.5px solid #222;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.settings-delete-btn {
+  margin-top: 10px;
+  padding: 8px 0;
+  background: #fff;
+  border: 1.5px solid #d32f2f;
+  color: #d32f2f;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.settings-delete-btn:hover {
+  background: #ffeaea;
+}
+
+.settings-margin-top {
+  margin-top: 0.5rem;
+}
+.settings-margin-top-bottom {
+  margin-top: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+/*
+@file Social.css
+@brief Styles for the social page.
+@author Huy Le (huyisme-005)
+*/
+.social-root {
+  min-height: 100vh;
+  background: #98e6b0;
+}
+
+/* Center the main content and set max width */
+.social-main-outer {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: calc(100vh - 80px);
+  padding-top: 40px;
+}
+
+.social-main-inner {
+  display: flex;
+  background: white;
+  border-radius: 24px;
+  box-shadow: 0 4px 32px 0 rgba(0,0,0,0.10);
+  overflow: hidden;
+  min-width: 800px;
+  max-width: 1000px;
+  width: 100%;
+  min-height: 500px;
+}
+
+/* Columns */
+.social-column {
+  flex: 1 1 0;
+  padding: 32px 24px;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.social-friends {
+  border-radius: 24px 0 0 24px;
+}
+
+.social-chats {
+  border-radius: 0 24px 24px 0;
+}
+
+/* Vertical divider */
+.social-divider {
+  width: 2px;
+  background: #98e6b0;
+  margin: 0;
+}
+
+.social-navbar {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  padding: 12px 24px;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.social-logo-container {
+  flex: 0 0 auto;
+  cursor: pointer;
+}
+
+.social-logo {
+  height: 40px;
+  width: auto;
+}
+
+.social-nav-links {
+  margin-left: auto;
+  display: flex;
+  gap: 32px;
+}
+
+.social-nav-links a {
+  color: #222;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding: 0 8px;
+}
+
+.social-nav-links a.active {
+  font-weight: bold;
+  border-bottom: 2px solid #222;
+}
+
+
+.social-main {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background: transparent;
+  padding: 48px 0 0 0;
+  min-height: 90vh;
+  gap: 48px;
+}
+
+
+.social-column {
+  background: #fff;
+  padding: 32px 24px;
+  border-radius: 16px;
+  min-width: 340px;
+  max-width: 400px;
+  flex: 1 1 0;
+  margin: 0 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+}
+
+.social-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.social-search {
+  padding: 6px 10px;
+  border: 1.5px solid #222;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.social-friend-list, .social-chat-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.social-friend-item, .social-chat-item {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.social-avatar {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: #f3f3f3;
+  border: 2.5px solid #bbb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-chat-label {
+  font-size: 0.98rem;
+  color: #444;
+}
+
+.social-chat-label.bold {
+  font-weight: bold;
+  color: #222;
+}
