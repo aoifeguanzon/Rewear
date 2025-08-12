@@ -5,6 +5,7 @@
  */
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import logo from '../assets/logo.png';
 import './SplashScreen.css';
 
 const SplashScreen: React.FC = () => {
@@ -15,7 +16,7 @@ const SplashScreen: React.FC = () => {
     <div className="splash-container">
       {!imgError ? (
         <img
-          src="assets/logo.png"
+          src={logo}
           alt="Logo"
           className="splash-logo"
           onError={() => setImgError(true)}
