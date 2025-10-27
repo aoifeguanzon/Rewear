@@ -1,0 +1,47 @@
+# Node modules (will be installed in image)
+**/node_modules
+
+# Dependency lock files (optional, keep if you want reproducible builds)
+**/package-lock.json
+**/yarn.lock
+
+# Build output
+src/frontend/dist
+src/frontend/build
+src/backend/dist
+src/backend/build
+
+# Logs
+*.log
+
+# OS/IDE files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+
+# Test coverage
+coverage/
+
+# Env files (should be mounted or copied as needed)
+.env
+.env.*
+
+# Git
+.git
+.gitignore
+
+# Misc
+npm-debug.log*
+yarn-error.log*
+
+# Ignore local scripts and docs not needed in image
+src/backend/SETUP_GUIDE.md
+src/backend/TEAM_SETUP.md
+src/backend/README.md
+src/frontend/README.md
+
+# Ignore local config overrides
+src/backend/config/local.js
+src/frontend/config/local.js

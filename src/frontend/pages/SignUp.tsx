@@ -1,63 +1,106 @@
 /**
  * @file SignUp.tsx
- * @author Huy Le (huyisme-005)
+ * @author Huy Le (huyisme-005), Aoife Guanzon
  * @brief Sign up page
  */
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import '../App.css';
+import { Link, useNavigate } from 'react-router-dom';
+import './AuthPage.css';
+//@ts-ignore
+import icon from '../assets/icon.png'
 
 const SignUp: React.FC = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+
+  // Added: State for error, success, and loading feedback for signup API call
+  // These states are used to show messages and loading spinner during signup
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('');
+    setSuccess('');
+    setLoading(true);
+    // Added: Send signup data to backend API and handle response
+    // Responsible for creating user account and redirecting to email verification
+    try {
+      const res = await fetch('/api/auth/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, email, password })
+      });
+      const data = await res.json();
+      // Always redirect to EmailVerification page after submit, regardless of backend response
+      // Debug tip: If verification page does not get the email, check that navigate passes { state: { email } }
+      navigate('/verification', { state: { email } });
+      // Optionally, you can show error/success messages on the verification page by passing more state
+    } catch (err) {
+      setError('Network error. Please try again.');
+      // Still redirect to verification page for consistent UX
+      navigate('/verification', { state: { email } });
+    }
+    setLoading(false);
+  }
 
   return (
-    <div className="centered-page px-4" style={{ position: 'relative' }}>
-      {/* Back Arrow */}
-      <Link to="/" style={{ position: 'absolute', top: 24, left: 24, display: 'flex', alignItems: 'center', textDecoration: 'none' }} aria-label="Back to splash">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="19" y1="12" x2="5" y2="12" /><polyline points="12 19 5 12 12 5" /></svg>
-      </Link>
-      <h1 className="text-6xl font-light mb-4">Sign up</h1>
-      <div className="subtitle text-lg mb-8">
-        <div>Where style meets sustainability.</div>
-        <div>Join the movement.</div>
+    <div className="signup-page">
+      <Link to="/" className="back-button">Back</Link>
+
+      <div className='green-section'>
+      <h1 className="title">Sign up</h1>
+      <div className="auth-subtitle">
+        <h2>Where style meets sustainability.
+          <br /><b>Join the movement.</b>
+        </h2>
       </div>
-      <form className="centered-form" style={{marginTop: 0}}>
+
+      <form className="auth-form" onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="Username"
           value={username}
           onChange={e => setUsername(e.target.value)}
-          className="border border-black px-3 py-2 text-lg rounded-none focus:outline-none"
+          className="auth-input"
         />
         <input
           type="email"
           placeholder="Email"
           value={email}
           onChange={e => setEmail(e.target.value)}
-          className="border border-black px-3 py-2 text-lg rounded-none focus:outline-none"
+          className="auth-input"
         />
         <input
           type="password"
           placeholder="Password"
           value={password}
           onChange={e => setPassword(e.target.value)}
-          className="border border-black px-3 py-2 text-lg rounded-none focus:outline-none"
+          className="auth-input"
         />
-        <button
-          type="submit"
-          className="border border-black text-2xl py-2 mt-2 bg-white hover:bg-gray-100 transition-colors"
-        >
-          Create account
+        <button type="submit" className="big-dark-button">
+          <h1>Create account</h1>
         </button>
+        {/* Added: Show error, success, and loading messages for signup process */}
+        {error && <div className="error-message">{error}</div>}
+        {success && <div className="success-message">{success}</div>}
+        {loading && <div className="loading-message">Creating account...</div>}
       </form>
-      <div className="login-link mt-4 text-lg">
-        Already with us?{' '}
-        <Link to="/login" className="font-bold underline hover:no-underline">Log in</Link>
+
+      <div className="switch-link">
+        <p>Already with us? <Link to="/login" className="switch-anchor">Log in</Link></p>
       </div>
+    </div>
+
+      <div className='logo-section'>
+        <img src={icon} alt="Logo" />
+      </div>
+
     </div>
   );
 };
 
-export default SignUp; 
+export default SignUp;

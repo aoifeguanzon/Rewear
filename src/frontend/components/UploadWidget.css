@@ -1,0 +1,128 @@
+.widget {
+  width: 300px;
+  background-color: #325C34;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.widget img {
+  width: 100%;
+  background-color: #003201;
+  border-radius: 5px;
+}
+
+
+.product-link-label{
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat';
+  font-weight: 500;
+  text-align: center;
+}
+
+.product-link-input{
+  display: block;
+  margin: 10px auto;
+  width: 100%;
+  padding: 5px 0;
+  box-sizing: border-box;
+  border-radius: 5px;
+  border: none
+}
+
+.product-link-input, .product-link-input::placeholder{
+    padding: 4px;
+    font-size: 1.1;
+    font-family: 'Gabarito';
+}
+
+.widget-bottom{
+    width: 100%;
+}
+
+.product-link-input:hover{
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}
+
+.price-range-container {
+  width: 100%;
+  margin: 20px 0;
+}
+
+.price-range-label {
+  display: block;
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+}
+
+.price-range-input {
+  width: 100%;
+  box-sizing: border-box;
+  display: block;
+  accent-color: white;
+  box-shadow: none;
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+  width: 100%;
+  background: transparent;
+  height: 20px;
+}
+
+/* Track for WebKit */
+input[type=range]::-webkit-slider-runnable-track {
+  height: 10px;
+  background: #81A281;
+  border-radius: 5px;
+}
+
+/* Thumb for WebKit */
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 25px;
+  height: 25px;
+  background: white;
+  border-radius: 50%;
+  margin-top: -7.5px;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+}
+
+/* Track for Firefox */
+input[type=range]::-moz-range-track {
+  height: 10px;
+  background: #81A281;
+  border-radius: 5px;
+}
+
+/* Thumb for Firefox */
+input[type=range]::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  background: white;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.upload-preview {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.upload-image-wrapper {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+  flex-shrink: 0;
+}

@@ -1,0 +1,190 @@
+/* ====== General Page Layout ====== */
+.profile-page {
+  min-height: 100vh;
+  background-color: #81A281;
+}
+
+.profile-container {
+  width: 70rem;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.profile-grid {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+}
+
+@media (min-width: 64rem) {
+  /* lg breakpoint */
+  .profile-grid {
+    grid-template-columns: 1fr 3fr;
+  }
+}
+
+/* ====== Sidebar ====== */
+.profile-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 15rem;
+  margin-right: 2rem;
+}
+
+.profile-card {
+  background-color: #fff;
+  border: 0.0625rem solid #e5e7eb;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  text-align: center;
+}
+
+.profile-avatar {
+  width: 6rem;
+  height: 6rem;
+  background-color: #f3f4f6;
+  border-radius: 50%;
+  border: 0.125rem solid #e5e7eb;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  line-height: 6rem;
+}
+
+/* ====== Section Headings ====== */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.section-header h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+/* ====== Card Grids ====== */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  background-color: #fff;
+  border: 0.0625rem solid #e5e7eb;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  text-align: center;
+  transition: box-shadow 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: 0 4px 6px rgba(0,0,0,0.08);
+}
+
+.card-image {
+  aspect-ratio: 1 / 1;
+  background-color: #f3f4f6;
+  border-radius: 0.5rem;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-title {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.card-subtitle {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+/* ====== My Wardrobes Specific ====== */
+.upload-box {
+  background-color: white;
+  border-radius: 0.5rem;
+  padding: 2rem;
+}
+
+.image-preview {
+  background-color: #003201;
+  border-radius: 5px;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.image-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.upload-button {
+  background-color: #003201;
+  color: white;
+  padding: 0.625rem;
+  border: none;
+  border-radius: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.upload-button:hover,
+.search-button:hover {
+  background-color: #325C34;
+}
+
+.link-input,
+.price-input {
+  margin-bottom: 1rem;
+}
+
+.link-input label,
+.price-input label {
+  display: block;
+  font-size: 0.875rem;
+  margin-bottom: 0.375rem;
+}
+
+.link-input input,
+.price-input input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 0.0625rem solid #d1d5db;
+  border-radius: 0.375rem;
+}
+
+.price-selects {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* ====== Shared Wardrobes Specific ====== */
+.stats-section {
+  background-color: #fff;
+  border-radius: 0.5rem;
+  padding: 2rem;
+  border: 0.0625rem solid #e5e7eb;
+  text-align: center;
+}
+
+.stats-section h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}

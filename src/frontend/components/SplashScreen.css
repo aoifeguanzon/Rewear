@@ -1,0 +1,63 @@
+/* Container for the whole splash screen */
+.splash-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background-color: white;
+}
+
+/* Logo image styles */
+.splash-logo {
+  width: 80%;
+  max-width: 800px;
+  height: auto;
+  border-radius: 0.05rem;
+  object-fit: contain;
+}
+
+/* Logo error box styles */
+.splash-logo-error {
+  width: 80%;
+  max-width: 800px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f3f4f6;
+  border-radius: 0.25rem;
+  color: #d1d5db;
+  font-size: 1.25rem;
+}
+
+/* Container for the buttons */
+.button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+  max-width: 300px;
+  margin-top: 2rem;
+}
+
+/* Style for both buttons */
+.splash-button {
+  width: 100%;
+  border: none;
+  background-color: #003201;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Hover effect for buttons */
+.splash-button:hover {
+  background-color: #325C34;
+  cursor: pointer;
+}
