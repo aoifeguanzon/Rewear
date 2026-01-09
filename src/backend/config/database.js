@@ -4,7 +4,8 @@
  * @module config/database
  * @description Provides DynamoDB connection and user CRUD operations for the ReWear app.
  */
-const AWS = require('aws-sdk');
+/*const AWS = require('aws-sdk');
+
 
 // Configure AWS
 AWS.config.update({
@@ -16,20 +17,20 @@ AWS.config.update({
 /**
  * DynamoDB DocumentClient instance for database operations.
  * @type {AWS.DynamoDB.DocumentClient}
- */
+ 
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 
 /**
  * Name of the DynamoDB table for users.
  * @type {string}
- */
+ 
 const TABLE_NAME = process.env.DYNAMODB_TABLE_NAME || 'Users';
 
 /**
  * Creates the Users table in DynamoDB if it does not exist.
  * @async
  * @returns {Promise<void>}
- */
+ 
 const createTable = async () => {
   const dynamodbService = new AWS.DynamoDB();
   
@@ -64,7 +65,7 @@ const createTable = async () => {
  * @async
  * @param {Object} userData - The user data to store.
  * @returns {Promise<{success: boolean, user: Object}>}
- */
+ 
 const createUser = async (userData) => {
   const params = {
     TableName: TABLE_NAME,
@@ -85,7 +86,7 @@ const createUser = async (userData) => {
  * @async
  * @param {string} userId - The user's unique ID.
  * @returns {Promise<Object|undefined>} The user object or undefined if not found.
- */
+ 
 const getUserById = async (userId) => {
   const params = {
     TableName: TABLE_NAME,
@@ -106,7 +107,7 @@ const getUserById = async (userId) => {
  * @async
  * @param {string} email - The user's email address.
  * @returns {Promise<Object|undefined>} The user object or undefined if not found.
- */
+ 
 const getUserByEmail = async (email) => {
   const params = {
     TableName: TABLE_NAME,
@@ -131,7 +132,7 @@ const getUserByEmail = async (email) => {
  * @param {string} userId - The user's unique ID.
  * @param {Object} updateData - The fields to update.
  * @returns {Promise<Object>} The updated user attributes.
- */
+ 
 const updateUser = async (userId, updateData) => {
   const updateExpression = [];
   const expressionAttributeValues = {};
@@ -166,7 +167,7 @@ const updateUser = async (userId, updateData) => {
  * @async
  * @param {string} userId - The user's unique ID.
  * @returns {Promise<{success: boolean}>}
- */
+ 
 const deleteUser = async (userId) => {
   const params = {
     TableName: TABLE_NAME,
@@ -190,4 +191,15 @@ module.exports = {
   updateUser,
   deleteUser,
   TABLE_NAME
-}; 
+}; */
+
+require('dotenv').config();
+const mongoose = require("mongoose");
+
+mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true, useUnifiedTopology: true,
+   
+    
+}).then(() => {
+console.log("DB CONNECTED!!!!!");
+})
+.catch((err) => console.log(err));

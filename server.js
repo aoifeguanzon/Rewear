@@ -1,13 +1,14 @@
 //access to our database file and our configuration directory.
 
-require('./config/db');
 
 
 
 const app = require('express')();
-const port = 3000;
+const port = 4500;
 
-const UserRouter = require('./api/User')
+require('./src/backend/config/database')
+
+const UserRouter = require('./api/api/User')
 
 const BodyParser = require('express').json;
 app.use(BodyParser());
